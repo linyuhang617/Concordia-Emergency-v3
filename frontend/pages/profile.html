@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Profile & Settings | Concordia Safety</title>
+    <link rel="stylesheet" href="../styles/profile.css">
+    <link rel="icon" href="../images/concordia-logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-top">
+        <div class="logo" onclick="window.location.href='../homepage.html'"><img src="../images/concordia-full-logo.svg" style="height:35px;"></div>
+        <div class="home" onclick="window.location.href='../homepage.html'" style="display:flex;align-items:center;gap:8px;padding:6px 16px;border:none;background:white;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#912338;display:flex;justify-content:center;align-items:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+            <path d="M9 21V12h6v9"/>
+          </svg>
+        </div>
+        Home
+      </div>
+      </div>
+      <div class="header-bottom">
+        <div class="crisis" onclick="localStorage.setItem('forceCrisis', 'true'); window.location.href='/homepage.html'">⚠️ Click for Crisis Mode</div>
+      </div>
+    </div>
+    <!-- Main Container -->
+    <div class="main-container">
+      <div class="inner-container">
+        <div class="title">
+          <p>Profile & Settings</p>
+        </div>
+        <div class="profile-container">
+          <div style="width:64px;height:64px;border-radius:50%;background:#912338;display:flex;justify-content:center;align-items:center;margin-left:10px;">
+            <img src="../images/user-regular.png" alt="profile icon" style="width:36px;height:36px;filter:invert(1);min-width:0;margin:0;">
+          </div>
+          <div style="padding-left:15px;">
+            <p class="username-js" style="font-size:20px;font-weight:bold;margin:0;color:#912338;">Username</p>
+            <p class="user-email-js" style="font-size:14px;color:#666;margin:4px 0 0 0;">User Email</p>
+          </div>
+          <div class="logOut-container">
+            <button class="logOut logOut-js">Log Out</button>
+          </div>
+        </div>
+
+        <div class="setting-card">
+          <div class="safety-settings">
+            <p style="font-weight:bold;font-size:16px;color:#912338;margin-bottom:6px;">Safety Settings</p>
+            <div class="inner-card safety-inner-card-js">
+              <div class="">
+                <p>Wheelchair User</p>
+                <p>Avoid Stairs</p>
+              </div>
+
+              <div class="edit-card safety-edit-js">
+                <img src="../images/edit.png" alt="profile icon">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="navigation-settings">
+            <p style="font-weight:bold;font-size:16px;color:#912338;margin-bottom:6px;">Navigation Settings</p>
+            <div class="inner-card navigation-inner-card-js">
+              <div class="navigation-display-card">
+                <p>Route Preference: </p>
+                <p>Fastest Route</p>
+                <p>Elevator Preference: </p>
+                <p>Prioritize Elevator</p>
+                <p>Text Size: </p>
+                <p>Medium</p>
+                <p>Color Mode: </p>
+                <p>High Contrast</p>
+              </div>
+              
+              <div class="edit-card navigation-edit-js">
+                <img src="../images/edit.png" alt="profile icon">
+              </div>
+            </div>
+          </div>
+
+          <div class="notification-settings">
+            <p style="font-weight:bold;font-size:16px;color:#912338;margin-bottom:6px;">Notification Settings</p>
+            <div class="inner-card notification-inner-card-js">
+              <div class="notification-display-card">
+                <p>Emergency Alert</p>
+                <p>
+                  <img src="../images/lock-solid.png" alt="profile icon">
+                  ON (Required)
+                </p>
+                <p>Protest</p>
+                <p>
+                  <img src="../images/bell-black.png" alt="profile icon">
+                  ON
+                </p>
+                <p>Construction</p>
+                <p>
+                  <img src="../images/bell-black.png" alt="profile icon">
+                  ON
+                </p>
+                <p>Weather</p>
+                <p>
+                  <img src="../images/bell-black.png" alt="profile icon">
+                  ON
+                </p>
+                <p>Elevator Issues</p>
+                <p>
+                  <img src="../images/bell-black.png" alt="profile icon">
+                  ON
+                </p>
+                <p>General Notices</p>
+                <p>
+                  <img src="../images/bell-slash-black.png" alt="profile icon">
+                  OFF
+                </p>
+              </div>
+
+              <div class="edit-card notification-edit-js">
+                <img src="../images/edit.png" alt="profile icon">
+              </div>
+            </div>
+          </div>
+
+          <div class="quiet-hours-settings">
+            <p style="font-weight:bold;font-size:16px;color:#912338;margin-bottom:6px;">Quiet Hours Settings</p>
+            <div class="inner-card quiet-hours-inner-card-js">
+              <div class="quiet-hours-display-card">
+                <p>Quiet Hours</p>
+                <p>
+                  <img src="../images/bell-black.png" alt="profile icon">
+                  ON
+                </p>
+
+                <p>Start Time</p>
+                <p>10:00 PM</p>
+
+                <p>End Time</p>
+                <p>7:00 AM</p>
+              </div>
+
+              <div class="edit-card quiet-hours-edit-js">
+                <img src="../images/edit.png" alt="profile icon">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="account-p">Account</p>
+        <div class="delete-card">
+          <button class="delete-button delete-button-js">
+            <img src="../images/trash-can-solid.png" alt="profile icon">
+            <p>Delete Account</p>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="../scripts/api.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/profile.js"></script>
+  </body>
+</html>

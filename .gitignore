@@ -1,0 +1,5 @@
+backend/concordia.db
+backend/__pycache__/
+backend/**/__pycache__/
+.venv/
+*.pyc

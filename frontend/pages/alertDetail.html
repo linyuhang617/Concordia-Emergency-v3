@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Alert Details | Concordia Safety</title>
+    <link rel="icon" href="../images/concordia-logo.png">
+    <link rel="stylesheet" href="../styles/alertDetail.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-top">
+        <div class="logo" onclick="window.location.href='../homepage.html'"><img src="../images/concordia-full-logo.svg"></div>
+        <div class="home" onclick="window.location.href='../homepage.html'" style="display:flex;align-items:center;gap:8px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:#912338;display:flex;justify-content:center;align-items:center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+              <path d="M9 21V12h6v9"/>
+            </svg>
+          </div>
+          Home
+        </div>
+      </div>
+      <div class="header-bottom">
+        <div class="crisis">⚠️ Click for Crisis Mode</div>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      <div class="inner-container">
+
+        <div class="title-container">
+          <img class="arrow" src="../images/arrow-left-solid.png" alt="profile icon"
+            onclick="window.location.href='alertHistory.html'">
+          <div class="title">
+            <p>Broken Elevator Details - ACTIVE
+              <img src="../images/circle-red.png" alt="profile icon">
+            </p>
+          </div>
+        </div>
+        
+        <div class="status-inner-card status">
+          <div class="detail-card verification">
+            <p class="card-title">Verification: </p>
+            <div class="verification-details">
+              <p>Reported by 3 students</p>
+            </div>
+          </div>
+
+          <div class="detail-card update">
+            <p class="card-title">Last Update: </p>
+            <div class="update-details">
+              <p>5 minutes ago</p>
+            </div>
+          </div>
+
+          <div class="detail-card impact">
+            <p class="card-title">Impact Level: </p>
+            <div class="impact-details">
+              <p>Moderate Obstruction</p>
+            </div>
+          </div>
+
+          <div class="detail-card status">
+            <p class="card-title">Status: </p>
+            <div class="status-details">
+              <p>Active</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-inner-card details">
+          <div class="detail-card location-card">
+            <p class="card-title">Location: </p>
+            <div class="location-detail location-detail-js">
+              <p>Webster Library
+                <br>
+                1455 De Maisonneuve Blvd W
+              </p>
+            </div>
+            <div class="map-link">
+              <a href="../homepage.html">[ View On Map ]</a>
+            </div>
+          </div>
+          <div class="detail-card situations">
+            <p class="card-title">Situation: </p>
+            <div class="situations-detail situations-detail-js">
+              <ul>
+                <li>Large gathering blocking front entrance</li>
+                <li>Loud chanting</li>
+                <li>Sidewalk partially obstructed</li>
+                <li>Police presence observed</li>
+              </ul>
+            </div>
+          </div>
+          <div class="detail-card accessibility">
+            <p class="card-title">Accessibility Impact: </p>
+            <div class="accessibility-detail accessibility-detail-js">
+              <ul>
+                <li>Accessible entrance blocked</li>
+                <li>Elevator access unavailable</li>
+                <li>Sidewalk partially blocked</li>
+                <li>Ramp obstructed</li>
+              </ul>
+            </div>
+          </div>
+          <div class="detail-card community">
+            <p class="card-title">Community Updates:</p>
+            <div class="accessibility-detail accessibility-detail-js">
+              <ul>
+                <li>"Front entrance now fully blocked" - 2 min ago</li>
+                <li>"Side entrance still open" - 6 min ago</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-card action-inner-card action">
+          <p class="card-title centered">Suggested Action</p>
+          <div>
+            <ul>
+              <li>Use Mackay Street entrance</li>
+              <li>Avoid De Masisonneuve front steps</li>
+              <li>Low-tension route available</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="detail-card review-inner-card review">
+          <p class="card-title centered">Post-Arrival Review</p>
+          <div class="review-container centered">
+            <button class="review-button review-button-js" 
+            onclick="window.location.href='alertReview.html'">
+              Review
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <script src="../scripts/api.js"></script>
+  <script src="../scripts/auth.js"></script>
+  <script src="../scripts/alertDetail.js"></script>
+  </body>
+</html>

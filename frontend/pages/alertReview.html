@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Alert Review | Concordia Safety</title>
+    <link rel="icon" href="../images/concordia-logo.png">
+    <link rel="stylesheet" href="../styles/alertReview.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-top">
+        <div class="logo" onclick="window.location.href='../homepage.html'"><img src="../images/concordia-full-logo.svg"></div>
+        <div class="home" onclick="window.location.href='../homepage.html'" style="display:flex;align-items:center;gap:8px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:#912338;display:flex;justify-content:center;align-items:center;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+              <path d="M9 21V12h6v9"/>
+            </svg>
+          </div>
+          Home
+        </div>
+      </div>
+      <div class="header-bottom">
+        <div class="crisis">⚠️ Click for Crisis Mode</div>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+      <div class="inner-container">
+        <div class="title-container">
+          <img class="arrow" src="../images/arrow-left-solid.png" alt="profile icon"
+            onclick="window.location.href='alertDetail.html'">
+          <div class="title">
+            <p>Review</p>
+          </div>
+        </div>
+
+        <div>
+          <form>
+            <fieldset>
+              <legend>Hazard Status</legend>
+              <div class="question-row">
+                <p>Is the hazard still present?</p> 
+                
+                <div class="options">
+                  <label for="yes">
+                    <input type="radio" id="yes" name="hazard" value="yes"> 
+                    Yes
+                  </label>
+
+                  <label for="no">
+                    <input type="radio" id="no" name="hazard" value="no"> 
+                    No
+                  </label>
+
+                  <label for="partially">
+                    <input type="radio" id="partially" name="hazard" value="partially"> 
+                    Partially
+                  </label>
+                </div>
+              </div>
+             
+              <div class="question-row">
+                <p>How has the situation changed?</p>  
+                <div class="options">
+                  <label for="improved">
+                    <input type="radio" id="improved" name="situation" value="improved">
+                    Improved
+                  </label>
+
+                  <label for="worsened">
+                    <input type="radio" id="worsened" name="situation" value="worsened">
+                    Worsened
+                  </label>
+
+                  <label for="no-change">
+                    <input type="radio" id="no-change" name="situation" value="no change">
+                    No Change
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            
+            <fieldset>
+              <legend>Location Accuracy</legend>
+              <div class="question-row">
+                <p>Is the location accurate</p> 
+
+                <div class="options">
+                  <label for="location-yes">
+                    <input type="radio" id="location-yes" name="location" value="yes">
+                    Yes
+                  </label>
+                  
+                  <label for="location-no">
+                    <input type="radio" id="location-no" name="location" value="no">
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Severity & Access</legend>
+              <div class="question-row">
+                <p>Current severity level:</p> 
+
+                <div class="options">
+                  <label for="low">
+                    <input type="radio" id="low" name="severity" value="low">
+                    Low
+                  </label>
+
+                  <label for="medium">
+                    <input type="radio" id="medium" name="severity" value="medium">
+                    Medium
+                  </label>
+
+                  <label for="high">
+                    <input type="radio" id="high" name="severity" value="high">
+                    High
+                  </label>
+                </div>
+              </div>
+              
+              <div class="question-row">
+                <p>Accessibility impact: </p>
+
+                <div class="options">
+                  <label for="no-impact">
+                    <input type="radio" id="no-impact" name="impact" value="no impact">
+                    No Impact
+                  </label>
+
+                  <label for="wheelchair">
+                    <input type="radio" id="wheelchair" name="impact" value="wheelchair">
+                    Wheelchair
+                  </label>
+
+                  <label for="low-stimulation">
+                    <input type="radio" id="low-stimulation" name="impact" value="low-stimulation">
+                    Low-Stimulation
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            
+            <fieldset>
+              <legend>Hazard Status (optional)</legend>
+
+              <div class="question-row">
+                <p>Add a short comment: </p>  
+                <div class="options-comment">
+                  <textarea class="comment-input" id="comment" name="comment" placeholder="Type your comment..."></textarea>
+                </div>
+              </div>
+
+              <div class="question-row">
+                <p>Upload Photo:</p> 
+                <div class="options">
+                  <input type="file" id="photo" name="photo" accept="image/*" multiple>
+                </div>
+              </div>
+              
+            </fieldset>
+            <div class="submit-button">
+              <button type="button">Submit</button>
+            </div>
+            
+          </form>
+        </div>
+
+      </div>
+    </div>
+    <script src="../scripts/api.js"></script>
+  <script src="../scripts/auth.js"></script>
+  <script src="../scripts/alertReview.js"></script>
+  </body>
+</html>
