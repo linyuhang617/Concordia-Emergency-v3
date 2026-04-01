@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concordia Safety — Mobile Demo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      overflow: hidden;
+    }
+
+    .demo-container {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    /* iPhone Frame */
+    .phone-frame {
+      width: 390px;
+      height: 844px;
+      background: #1a1a1a;
+      border-radius: 55px;
+      padding: 12px;
+      box-shadow:
+        0 0 0 2px #333,
+        0 0 0 4px #1a1a1a,
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 120px rgba(145, 35, 56, 0.15);
+      position: relative;
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 44px;
+      overflow: hidden;
+      background: #fff;
+      position: relative;
+    }
+
+    .phone-screen iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Dynamic Island / Notch */
+    .phone-notch {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 126px;
+      height: 36px;
+      background: #1a1a1a;
+      border-radius: 20px;
+      z-index: 10;
+    }
+
+    /* Side buttons */
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: 180px;
+      width: 4px;
+      height: 80px;
+      background: #333;
+      border-radius: 0 2px 2px 0;
+    }
+    .phone-frame::after {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 160px;
+      width: 4px;
+      height: 40px;
+      background: #333;
+      border-radius: 2px 0 0 2px;
+      box-shadow: 0 60px 0 #333, 0 100px 0 #333;
+    }
+
+    /* Info Panel */
+    .info-panel {
+      color: #fff;
+      max-width: 400px;
+    }
+
+    .info-panel h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #fff, #ccc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .info-panel .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 32px;
+      font-weight: 400;
+    }
+
+    .info-panel .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .info-panel .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      transform: translateX(4px);
+    }
+    .nav-link .nav-icon {
+      font-size: 1.3rem;
+      width: 28px;
+      text-align: center;
+    }
+    .nav-link .nav-label { flex: 1; }
+    .nav-link .nav-arrow { color: rgba(255,255,255,0.3); }
+
+    .info-panel .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(145, 35, 56, 0.3);
+      border: 1px solid rgba(145, 35, 56, 0.5);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: #e8a0ad;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .demo-container { flex-direction: column; gap: 24px; }
+      .info-panel { text-align: center; padding: 0 20px; }
+      .info-panel h1 { font-size: 1.6rem; }
+      .phone-frame { transform: scale(0.85); }
+    }
+    @media (max-height: 900px) {
+      .phone-frame { transform: scale(0.78); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-container">
+    <!-- iPhone -->
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <iframe id="app-frame" src="index.html"></iframe>
+      </div>
+    </div>
+
+    <!-- Info Panel -->
+    <div class="info-panel">
+      <div class="badge">SOEN 6751 — HCI</div>
+      <h1>Concordia Campus Safety</h1>
+      <p class="subtitle">Mobile-first emergency reporting app<br>designed with HCI principles</p>
+
+      <div class="nav-links">
+        <a class="nav-link" onclick="navigateTo('index.html')">
+          <span class="nav-icon">🗺</span>
+          <span class="nav-label">Homepage — Map + Alerts</span>
+          <span class="nav-arrow">→</span>
+        </a>
+        <a class="nav-link" onclick="navigateTo('pages/login.html')">
+          <span class="nav-icon">🔐</span>
+          <span class="nav-label">Login</span>
+          <span class="nav-arrow">→</span>
+        </a>
+        <a class="nav-link" onclick="navigateTo('pages/report.html')">
+          <span class="nav-icon">📢</span>
+          <span class="nav-label">Report Hazard</span>
+          <span class="nav-arrow">→</span>
+        </a>
+        <a class="nav-link" onclick="navigateTo('pages/alert-history.html')">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">Alert History</span>
+          <span class="nav-arrow">→</span>
+        </a>
+        <a class="nav-link" onclick="navigateTo('pages/profile.html')">
+          <span class="nav-icon">👤</span>
+          <span class="nav-label">Profile & Settings</span>
+          <span class="nav-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function navigateTo(url) {
+      document.getElementById('app-frame').src = url
+    }
+  </script>
+</body>
+</html>

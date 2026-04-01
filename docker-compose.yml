@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: concordia
+      POSTGRES_USER: concordia
+      POSTGRES_PASSWORD: concordia_secret_2026
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U concordia"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    restart: always
+    ports:
+      - "8013:8013"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://concordia:concordia_secret_2026@db:5432/concordia
+      JWT_SECRET: concordia-v3-jwt-secret-2026
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    restart: always
+    ports:
+      - "3000:80"
+
+volumes:
+  pgdata:

@@ -1,4 +1,6 @@
-const API_BASE = 'http://localhost:8013'
+const API_BASE = window.location.hostname === 'localhost'
+  ? 'http://localhost:8013'
+  : 'https://concordia-api.ailasai.com'
 
 function getToken() { return localStorage.getItem('token') }
 function authHeaders() {
