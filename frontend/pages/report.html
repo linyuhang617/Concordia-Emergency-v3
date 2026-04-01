@@ -1,74 +1,89 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Report Hazard | Concordia Safety</title>
-    <link rel="stylesheet" href="../styles/report.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="icon" href="../images/concordia-logo.png">
-  </head>
-  <body>
-     <!-- Header -->
-    <div class="header">
-      <div class="header-top">
-        <div class="logo" onclick="window.location.href='../homepage.html'"><img src="../images/concordia-full-logo.svg" style="height:35px;"></div>
-        <div class="home" onclick="window.location.href='../homepage.html'" style="display:flex;align-items:center;gap:8px;">
-          <div style="width:36px;height:36px;border-radius:50%;background:#912338;display:flex;justify-content:center;align-items:center;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
-              <path d="M9 21V12h6v9"/>
-            </svg>
-          </div>
-          Home
-        </div>
-      </div>
-      <div class="header-bottom">
-        <div class="crisis">⚠️ Click for Crisis Mode</div>
-      </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Hazard — Concordia Safety</title>
+  <link rel="icon" href="../images/concordia-logo.png">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/cards.css">
+  <link rel="stylesheet" href="../styles/forms.css">
+  <link rel="stylesheet" href="../styles/pages.css">
+</head>
+<body class="page-body">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="logo" onclick="window.location.href='../index.html'">
+      <div class="logo-circle">C</div>
+      <span class="logo-text">Concordia Safety</span>
     </div>
-
-    <!-- Main Container -->
-    <div class="main-container">
-      <div class="inner-container">
-        <div class="outer-progress-bar">
-          <div class="progress-bar">
-            <progress id="formProgress" value="1" max="3"></progress> 
-          </div>
-        </div>
-
-        <div class="title">
-          <p>Hazard Type</p>
-        </div>
-
-        <div class="input-container">
-          
-          <div class="type-container">
-            <button class="type-button protest-js"
-              onclick="window.location.href='hazardsPages/protest.html'">
-              Protest
-            </button>
-            <button class="type-button construction-js"
-              onclick="window.location.href='hazardsPages/construction.html'">
-              Construction
-            </button>
-            <button class="type-button weather-js"
-              onclick="window.location.href='hazardsPages/weather.html'">
-              Weather Hazard
-            </button>
-            <button class="type-button elevator-js"
-              onclick="window.location.href='hazardsPages/elevator.html'">
-              Elevator Malfunction
-            </button>
-            <button class="type-button other-button other-js"
-              onclick="window.location.href='hazardsPages/other.html'">
-              Others
-            </button>
-          </div>
-        
-      </div>
+    <div class="header-actions">
+      <button type="button" class="header-btn" onclick="window.location.href='../index.html'" title="Home">🏠</button>
     </div>
-    
-    
-    <script></script>
-  </body>
+  </header>
+
+  <!-- Progress -->
+  <div class="progress-bar">
+    <progress value="1" max="3"></progress>
+  </div>
+  <div class="step-indicator">Step 1 of 3 — Select Hazard Type</div>
+
+  <!-- Hazard Type Cards -->
+  <div class="hazard-grid">
+    <a class="hazard-type-card" href="report-form.html?type=Protest">
+      <div class="hazard-emoji">📢</div>
+      <div class="hazard-info">
+        <div class="hazard-name">Protest</div>
+        <div class="hazard-desc">Demonstrations, marches, or gatherings blocking access</div>
+      </div>
+    </a>
+
+    <a class="hazard-type-card" href="report-form.html?type=Construction">
+      <div class="hazard-emoji">🚧</div>
+      <div class="hazard-info">
+        <div class="hazard-name">Construction</div>
+        <div class="hazard-desc">Road work, building repairs, or blocked pathways</div>
+      </div>
+    </a>
+
+    <a class="hazard-type-card" href="report-form.html?type=Weather">
+      <div class="hazard-emoji">🌨️</div>
+      <div class="hazard-info">
+        <div class="hazard-name">Weather Hazard</div>
+        <div class="hazard-desc">Ice, snow, flooding, or dangerous conditions</div>
+      </div>
+    </a>
+
+    <a class="hazard-type-card" href="report-form.html?type=Elevator">
+      <div class="hazard-emoji">🛗</div>
+      <div class="hazard-info">
+        <div class="hazard-name">Elevator Malfunction</div>
+        <div class="hazard-desc">Broken, stuck, or out-of-service elevators</div>
+      </div>
+    </a>
+
+    <a class="hazard-type-card" href="report-form.html?type=Others">
+      <div class="hazard-emoji">⚠️</div>
+      <div class="hazard-info">
+        <div class="hazard-name">Others</div>
+        <div class="hazard-desc">Any other campus safety concern</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Bottom Tab Bar -->
+  <nav class="tab-bar">
+    <a class="tab-item" href="../index.html">
+      <span class="tab-icon">🗺</span>
+      <span>Map</span>
+    </a>
+    <a class="tab-fab active" href="report.html" title="Report Hazard">+</a>
+    <a class="tab-item" href="profile.html">
+      <span class="tab-icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+</body>
 </html>

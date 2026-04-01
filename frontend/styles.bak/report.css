@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap");
+
+:root{
+  --container-color: #ffffff;
+  --box-color:#f5f5f5;
+  --button-color:#912338;
+  --header-color:#912338;
+  --text-light:#ffffff;
+  --background-color:#f9f9f9;
+  --inner-button-color: #912338;
+}
+
+body{
+  margin: 0px;
+  height: 100%;
+  background-color: var(--background-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Header */
+.header{ display:flex; flex-direction:column; background:white; border-bottom: 1px solid #eee; }
+.header-top{ display:flex; justify-content:space-between; align-items:center; padding: 4px 30px; background:white; border-bottom: 1px solid #eee; }
+.header-bottom{ background:var(--header-color); padding: 28px 30px; display:flex; align-items:center; }
+.crisis{ color:var(--text-light); font-weight:700; font-size:24px; font-family:"Montserrat", sans-serif; cursor:pointer; display:inline-flex; align-items:center; gap:8px; border-bottom: 2px solid transparent; transition: border-bottom 0.2s; }
+.crisis:hover{ border-bottom: 2px solid white; }
+.logo{ font-weight:bold; padding:4px 0; cursor:pointer; }
+.logo img{ width:auto !important; min-width:0 !important; max-width:none !important; height:35px !important; margin-left:0; padding-top:0; }
+.logIn{ color:var(--header-color); background:white; cursor:pointer; display:flex; align-items:center; font-weight:bold; padding: 8px 20px; border:none; transition: all 0.2s; }
+.logIn:hover{ background:#f5f5f5; }
+
+/* Main */
+.main-container{
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px;
+}
+
+.inner-container{
+  flex: 1;
+  background-color: white;
+  width: 680px;
+  margin-top: 10px;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding-bottom: 30px;
+}
+
+.input-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+}
+
+/* Progress bar */
+.progress-bar{
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 4px;
+}
+
+progress{
+  width: 460px;
+  height: 8px;
+  border-radius: 10px;
+  border: none;
+  overflow: hidden;
+}
+progress::-webkit-progress-bar{
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+progress::-webkit-progress-value{
+  background: linear-gradient(90deg, #912338, #b52a44);
+  border-radius: 10px;
+}
+progress::-moz-progress-bar{
+  background: linear-gradient(90deg, #912338, #b52a44);
+  border-radius: 10px;
+}
+
+/* Title */
+.title{
+  display:flex;
+  justify-content:center;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+.title p{
+  background: var(--header-color);
+  color: white;
+  padding: 12px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  width: 380px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/* Type buttons */
+.type-container{
+  margin-top: 8%;
+  text-align: center;
+}
+
+.type-button{
+  height: 50px;
+  width: 420px;
+  margin-top: 12px;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1.5px solid var(--header-color);
+  color: var(--header-color);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+.type-button:hover{
+  background-color: var(--header-color);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(145,35,56,0.2);
+}
+
+.other-button{
+  margin-top: 10%;
+  border-style: dashed !important;
+  opacity: 0.7;
+}
+.other-button:hover{
+  opacity: 1;
+}
+
+/* Mobile */
+@media (max-width: 600px){
+  .main-container{ min-height: 80vh; padding: 0px; }
+  .inner-container{ width: 100%; margin-top: 0px; border-radius: 0px; box-shadow: none; }
+  progress{ width: 300px; }
+  .type-button{ width: 300px; }
+  .title p{ width: 250px; font-size: 16px; }
+}
+
+/* Header auth buttons */
+.auth-buttons{ display:flex; background:white; margin-left:auto; align-items:center; }
+.auth-buttons .login{ padding:8px 16px; font-weight:600; font-size:14px; color:#912338; background:white; cursor:pointer; display:flex; align-items:center; }
+.auth-buttons .login:hover{ color:#6b1a28; }
+.auth-buttons .signup{ padding:8px 16px; font-weight:600; font-size:14px; color:#912338; background:white; border:2px solid #912338; border-radius:6px; margin-left:8px; cursor:pointer; }
+.auth-buttons .signup:hover{ background:#912338; color:white; }
+.divider{ color:#ccc; display:flex; align-items:center; padding:0 4px; }
+.mobile-menu{ display:none; }

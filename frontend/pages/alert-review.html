@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alert Review — Concordia Safety</title>
+  <link rel="icon" href="../images/concordia-logo.png">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/forms.css">
+  <link rel="stylesheet" href="../styles/pages.css">
+</head>
+<body class="page-body">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="logo" onclick="window.location.href='../index.html'">
+      <div class="logo-circle">C</div>
+      <span class="logo-text">Concordia Safety</span>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="header-btn" onclick="history.back()" title="Back">←</button>
+    </div>
+  </header>
+
+  <!-- Page Title -->
+  <div class="sub-header">
+    <button type="button" class="detail-back" onclick="history.back()">←</button>
+    <h2 class="page-title">Review Alert</h2>
+  </div>
+
+  <!-- Review Form -->
+  <div class="form-section">
+    <form id="review-form-js" onsubmit="return false">
+
+      <fieldset class="form-fieldset">
+        <legend>Hazard Status</legend>
+        <div class="form-group">
+          <label class="form-label">Is the hazard still present?</label>
+          <div class="option-group">
+            <label class="option-item"><input type="radio" name="hazard" value="yes"> Yes</label>
+            <label class="option-item"><input type="radio" name="hazard" value="no"> No</label>
+            <label class="option-item"><input type="radio" name="hazard" value="partially"> Partially</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">How has the situation changed?</label>
+          <div class="option-group">
+            <label class="option-item"><input type="radio" name="situation" value="improved"> Improved</label>
+            <label class="option-item"><input type="radio" name="situation" value="worsened"> Worsened</label>
+            <label class="option-item"><input type="radio" name="situation" value="no change"> No Change</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset">
+        <legend>Location Accuracy</legend>
+        <div class="form-group">
+          <label class="form-label">Is the location accurate?</label>
+          <div class="option-group">
+            <label class="option-item"><input type="radio" name="location" value="yes"> Yes</label>
+            <label class="option-item"><input type="radio" name="location" value="no"> No</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset">
+        <legend>Severity & Access</legend>
+        <div class="form-group">
+          <label class="form-label">Current severity level:</label>
+          <div class="option-group">
+            <label class="option-item"><input type="radio" name="severity" value="low"> Low</label>
+            <label class="option-item"><input type="radio" name="severity" value="medium"> Medium</label>
+            <label class="option-item"><input type="radio" name="severity" value="high"> High</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="form-fieldset">
+        <legend>Additional (optional)</legend>
+        <div class="form-group">
+          <label class="form-label" for="comment">Comment</label>
+          <textarea class="form-textarea" id="comment" name="comment" placeholder="Add a short comment..."></textarea>
+        </div>
+      </fieldset>
+
+      <button type="button" class="form-submit" id="submit-review-js">Submit Review</button>
+    </form>
+  </div>
+
+  <!-- Bottom Tab Bar -->
+  <nav class="tab-bar">
+    <a class="tab-item" href="../index.html">
+      <span class="tab-icon">🗺</span>
+      <span>Map</span>
+    </a>
+    <a class="tab-fab" href="report.html" title="Report Hazard">+</a>
+    <a class="tab-item" href="profile.html">
+      <span class="tab-icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script src="../scripts/api.js"></script>
+  <script src="../scripts/auth.js"></script>
+  <script src="../scripts/alert-review.js"></script>
+</body>
+</html>

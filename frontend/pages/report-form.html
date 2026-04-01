@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Details — Concordia Safety</title>
+  <link rel="icon" href="../images/concordia-logo.png">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/forms.css">
+  <link rel="stylesheet" href="../styles/pages.css">
+</head>
+<body class="page-body">
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="logo" onclick="window.location.href='../index.html'">
+      <div class="logo-circle">C</div>
+      <span class="logo-text">Concordia Safety</span>
+    </div>
+    <div class="header-actions">
+      <button type="button" class="header-btn" onclick="window.location.href='report.html'" title="Back">←</button>
+    </div>
+  </header>
+
+  <!-- Progress -->
+  <div class="progress-bar">
+    <progress value="2" max="3"></progress>
+  </div>
+  <div class="step-indicator">Step 2 of 3 — <span id="type-label-js">Details</span></div>
+
+  <!-- Form -->
+  <div class="form-section">
+    <form id="report-form-js" onsubmit="return false">
+
+      <!-- Location (all types) -->
+      <fieldset class="form-fieldset">
+        <legend>Location Details</legend>
+        <div class="form-group">
+          <label class="form-label" for="building">Building <span class="required">*</span></label>
+          <select class="form-select" id="building" name="building">
+            <option value="">Select a building</option>
+          </select>
+          <p class="form-error" id="building-error-js">Please select a building.</p>
+        </div>
+        <div class="form-group" id="street-fields-js">
+          <label class="form-label" for="street1">Intersection Street 1</label>
+          <input class="form-input" type="text" id="street1" placeholder="Street name">
+          <label class="form-label" for="street2" style="margin-top:10px">Intersection Street 2</label>
+          <input class="form-input" type="text" id="street2" placeholder="Street name">
+        </div>
+      </fieldset>
+
+      <!-- Protest fields -->
+      <fieldset class="form-fieldset" id="fields-protest-js" style="display:none">
+        <legend>Incident Details</legend>
+        <div class="form-group">
+          <label class="form-label">Current Situation:</label>
+          <div class="option-group">
+            <label class="option-item"><input type="radio" name="situation" value="fully blocked"> Fully blocked</label>
+            <label class="option-item"><input type="radio" name="situation" value="partially blocked"> Partially blocked</label>
+            <label class="option-item"><input type="radio" name="situation" value="loud passable"> Loud but passable</label>
+            <label class="option-item"><input type="radio" name="situation" value="police presence"> Police presence</label>
+            <label class="option-item"><input type="radio" name="situation" value="physical confrontation"> Physical confrontation</label>
+            <label class="option-item"><input type="radio" name="situation" value="property damage"> Property damage</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mobility Impact:</label>
+          <div class="option-group">
+            <label class="option-item"><input type="checkbox" name="mobility" value="wheelchair access blocked"> Wheelchair access blocked</label>
+            <label class="option-item"><input type="checkbox" name="mobility" value="sidewalk blocked"> Sidewalk blocked</label>
+            <label class="option-item"><input type="checkbox" name="mobility" value="stair-only detours"> Stair-only detours</label>
+            <label class="option-item"><input type="checkbox" name="mobility" value="accessible entrance closed"> Accessible entrance closed</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="intensity">Intensity Level</label>
+          <select class="form-select" id="intensity" name="intensity">
+            <option value="">Select an option</option>
+            <option value="calm gathering">Calm gathering</option>
+            <option value="loud / high noise">Loud / High noise</option>
+            <option value="aggressive / unsafe feeling">Aggressive / Unsafe feeling</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- Construction fields -->
+      <fieldset class="form-fieldset" id="fields-construction-js" style="display:none">
+        <legend>Incident Details</legend>
+        <div class="form-group">
+          <label class="form-label" for="issue">Type of Issue</label>
+          <select class="form-select" id="issue" name="issue">
+            <option value="">Select an option</option>
+            <option value="sidewalk closed">Sidewalk closed</option>
+            <option value="road closed">Road closed</option>
+            <option value="entrance closed">Entrance closed</option>
+            <option value="elevator temporarily unavailable">Elevator temporarily unavailable</option>
+            <option value="loud drilling">Loud drilling</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="duration">Estimated Duration</label>
+          <select class="form-select" id="duration" name="duration">
+            <option value="">Select an option</option>
+            <option value="today only">Today only</option>
+            <option value="this week">This week</option>
+            <option value="long-term">Long-term</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Accessibility Impact:</label>
+          <div class="option-group">
+            <label class="option-item"><input type="checkbox" name="accessibility" value="ramp blocked"> Ramp blocked</label>
+            <label class="option-item"><input type="checkbox" name="accessibility" value="accessibility entrance blocked"> Accessible entrance blocked</label>
+            <label class="option-item"><input type="checkbox" name="accessibility" value="detour required"> Detour required</label>
+            <label class="option-item"><input type="checkbox" name="accessibility" value="uneven ground / debris"> Uneven ground / debris</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Weather fields -->
+      <fieldset class="form-fieldset" id="fields-weather-js" style="display:none">
+        <legend>Incident Details</legend>
+        <div class="form-group">
+          <label class="form-label" for="type-weather">Type of Weather</label>
+          <select class="form-select" id="type-weather" name="type-weather">
+            <option value="">Select an option</option>
+            <option value="ice on sidewalk">Ice on sidewalk</option>
+            <option value="heavy snow">Heavy snow</option>
+            <option value="flooding">Flooding</option>
+            <option value="strong winds">Strong winds</option>
+            <option value="extreme heat">Extreme heat</option>
+            <option value="poor visibility">Poor visibility</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="severity">Severity</label>
+          <select class="form-select" id="severity" name="severity">
+            <option value="">Select an option</option>
+            <option value="slippery but walkable">Slippery but walkable</option>
+            <option value="dangerous for walking">Dangerous for walking</option>
+            <option value="dangerous for wheelchair users">Dangerous for wheelchair users</option>
+            <option value="impassable">Impassable</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Accessibility Impact:</label>
+          <div class="option-group">
+            <label class="option-item"><input type="checkbox" name="weather-access" value="ramp unsafe"> Ramp unsafe</label>
+            <label class="option-item"><input type="checkbox" name="weather-access" value="stairs unsafe"> Stairs unsafe</label>
+            <label class="option-item"><input type="checkbox" name="weather-access" value="doors difficult to open"> Doors difficult to open</label>
+            <label class="option-item"><input type="checkbox" name="weather-access" value="bus stop inaccessible"> Bus stop inaccessible</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Elevator fields -->
+      <fieldset class="form-fieldset" id="fields-elevator-js" style="display:none">
+        <legend>Incident Details</legend>
+        <div class="form-group">
+          <label class="form-label">Floors Affected:</label>
+          <div class="option-group">
+            <label class="option-item"><input type="checkbox" name="floors" value="cannot access upper floors"> Cannot access upper floors</label>
+            <label class="option-item"><input type="checkbox" name="floors" value="cannot access basement"> Cannot access basement</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="elev-status">Elevator Status</label>
+          <select class="form-select" id="elev-status" name="elev-status">
+            <option value="">Select an option</option>
+            <option value="not working at all">Not working at all</option>
+            <option value="stuck between floors">Stuck between floors</option>
+            <option value="long wait time">Long wait time</option>
+            <option value="door malfunction">Door malfunction</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="alternative">Alternative Access</label>
+          <select class="form-select" id="alternative" name="alternative">
+            <option value="">Select an option</option>
+            <option value="no alternative">No alternative</option>
+            <option value="ramp available">Ramp available</option>
+            <option value="another elevator working">Another elevator working</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="urgency">Urgency</label>
+          <select class="form-select" id="urgency" name="urgency">
+            <option value="">Select an option</option>
+            <option value="temporary issue">Temporary issue</option>
+            <option value="emergency">Emergency</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <!-- Others fields -->
+      <fieldset class="form-fieldset" id="fields-others-js" style="display:none">
+        <legend>Incident Details</legend>
+        <div class="form-group">
+          <label class="form-label" for="impact">Impact Type</label>
+          <select class="form-select" id="impact" name="impact">
+            <option value="">Select an option</option>
+            <option value="safety risk">Safety risk</option>
+            <option value="accessibility issue">Accessibility issue</option>
+            <option value="noise disturbance">Noise disturbance</option>
+            <option value="navigation blockage">Navigation blockage</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="description">Description <span class="required">*</span></label>
+          <textarea class="form-textarea" id="description" name="description" placeholder="Describe the hazard..."></textarea>
+          <p class="form-error" id="desc-error-js">Please enter a description.</p>
+        </div>
+      </fieldset>
+
+      <!-- Photo (all types, optional) -->
+      <fieldset class="form-fieldset">
+        <legend>Optional</legend>
+        <div class="form-group">
+          <label class="form-label">Upload Photo</label>
+          <div class="file-upload" onclick="document.getElementById('photo').click()">
+            📷 Tap to upload photo
+            <input type="file" id="photo" name="photo" accept="image/*" multiple style="display:none">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Next button -->
+      <button type="button" class="form-submit" id="next-btn-js">Next →</button>
+    </form>
+  </div>
+
+  <!-- Bottom Tab Bar -->
+  <nav class="tab-bar">
+    <a class="tab-item" href="../index.html">
+      <span class="tab-icon">🗺</span>
+      <span>Map</span>
+    </a>
+    <a class="tab-fab active" href="report.html" title="Report Hazard">+</a>
+    <a class="tab-item" href="profile.html">
+      <span class="tab-icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script src="../data/building.js"></script>
+  <script src="../scripts/api.js"></script>
+  <script src="../scripts/auth.js"></script>
+  <script src="../scripts/report.js"></script>
+</body>
+</html>

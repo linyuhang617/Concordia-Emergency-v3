@@ -8,26 +8,30 @@ function isAuthenticated() {
 
 function logout() {
   localStorage.removeItem('token')
-  window.location.href = '/pages/logIn.html'
+  window.location.href = '/pages/login.html'
 }
 
 async function checkAuth() {
-  const token = getToken()
+  var token = getToken()
   if (!token) {
-    window.location.href = '/pages/logIn.html'
+    window.location.href = '/pages/login.html'
     return null
   }
   try {
-    const data = await window.API.getMe()
+    var data = await window.API.getMe()
     if (data.detail) {
       localStorage.removeItem('token')
-      window.location.href = '/pages/logIn.html'
+      window.location.href = '/pages/login.html'
       return null
     }
     return data
   } catch (e) {
     localStorage.removeItem('token')
-    window.location.href = '/pages/logIn.html'
+    window.location.href = '/pages/login.html'
     return null
   }
 }
+
+window.checkAuth = checkAuth
+window.logout = logout
+window.isAuthenticated = isAuthenticated

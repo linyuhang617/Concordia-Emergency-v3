@@ -3,31 +3,34 @@ function isValidEmail(email) {
 }
 
 function setError(message) {
-  const el = document.querySelector('.signUp-error-js')
-  if (el) { el.textContent = message; el.style.display = 'block' }
+  var el = document.querySelector('.signUp-error-js')
+  if (el) { el.textContent = message; el.classList.add('visible') }
 }
 
 function clearError() {
-  const el = document.querySelector('.signUp-error-js')
-  if (el) { el.textContent = ''; el.style.display = 'none' }
+  var el = document.querySelector('.signUp-error-js')
+  if (el) { el.textContent = ''; el.classList.remove('visible') }
 }
 
 function togglePassword(id) {
-  const input = document.getElementById(id)
-  const icon = document.querySelector('.show-' + id + '-js')
+  var input = document.getElementById(id)
+  var icon = document.querySelector('.show-' + id + '-js')
   if (input.type === 'password') { input.type = 'text'; icon.textContent = '👁️‍🗨️' }
   else { input.type = 'password'; icon.textContent = '👁' }
 }
 
 async function handleSignUp(event) {
-  event.preventDefault()
+  if (event) event.preventDefault()
   clearError()
 
-  const username = document.getElementById('username')?.value.trim() || ''
-  const email = document.getElementById('email')?.value.trim() || ''
-  const password = document.getElementById('password')?.value || ''
-  const confirmPassword = document.getElementById('re-enter-password')?.value || ''
-  const accessibility = document.getElementById('accessibility')?.value || ''
+  var username = (document.getElementById('username') || {}).value || ''
+  var email = (document.getElementById('email') || {}).value || ''
+  var password = (document.getElementById('password') || {}).value || ''
+  var confirmPassword = (document.getElementById('re-enter-password') || {}).value || ''
+  var accessibility = (document.getElementById('accessibility') || {}).value || ''
+
+  username = username.trim()
+  email = email.trim()
 
   if (!username || !email || !password || !confirmPassword) {
     setError('Please fill in all required fields.')
@@ -42,8 +45,10 @@ async function handleSignUp(event) {
     return
   }
 
-  const result = await window.API.signup({
-    username, email, password,
+  var result = await window.API.signup({
+    username: username,
+    email: email,
+    password: password,
     accessibility: accessibility ? [accessibility] : []
   })
 
@@ -53,14 +58,16 @@ async function handleSignUp(event) {
   }
 
   alert('Sign up successful! Please log in.')
-  window.location.href = 'logIn.html'
+  window.location.href = 'login.html'
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('.show-password-js')
-    ?.addEventListener('click', () => togglePassword('password'))
-  document.querySelector('.show-re-enter-password-js')
-    ?.addEventListener('click', () => togglePassword('re-enter-password'))
-  document.querySelector('.signUp-js')
-    ?.addEventListener('click', handleSignUp)
+document.addEventListener('DOMContentLoaded', function() {
+  var showPw = document.querySelector('.show-password-js')
+  if (showPw) showPw.addEventListener('click', function() { togglePassword('password') })
+
+  var showRePw = document.querySelector('.show-re-enter-password-js')
+  if (showRePw) showRePw.addEventListener('click', function() { togglePassword('re-enter-password') })
+
+  var signUpBtn = document.querySelector('.signUp-js')
+  if (signUpBtn) signUpBtn.addEventListener('click', handleSignUp)
 })

@@ -1,91 +1,70 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="../images/concordia-logo.png">
-    <title>Sign Up — Concordia Emergency</title>
-    <link rel="stylesheet" href="../styles/signUp.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <div class="header">
-      <div class="header-top">
-        <div class="logo"><img src="../images/concordia-full-logo.svg" style="height:35px;"></div>
-        <div class="auth-buttons">
-          <div class="login" onclick="window.location.href='logIn.html'"><img src="../images/user-regular.png" style="height:16px;vertical-align:middle;margin-right:6px;filter:invert(19%) sepia(72%) saturate(1200%) hue-rotate(320deg) brightness(80%)"> Log In</div>
-          <div class="divider">|</div>
-          <div class="signup" onclick="window.location.href='signUp.html'">Sign Up</div>
-        </div>
-        <div class="mobile-menu">&#9776;</div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — Concordia Safety</title>
+  <link rel="icon" href="../images/concordia-logo.png">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/forms.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="logo-circle">C</div>
       </div>
-      <div class="header-bottom">
-        <div class="crisis">⚠️ Click for Crisis Mode</div>
+      <h2 class="auth-title">Sign Up</h2>
+
+      <div class="form-group">
+        <label class="form-label" for="username">Username <span class="required">*</span></label>
+        <input class="form-input" type="text" id="username" placeholder="Choose a username" autocomplete="username">
       </div>
-    </div>
-    <div class="dropdown-menu" id="dropdownMenu">
-      <div class="login" onclick="window.location.href='logIn.html'">Log In</div>
-    </div>
-    <div class="main-container">
-      <div class="inner-container">
-        <div class="top-bar"></div>
-        <div class="title"><p>Sign Up</p></div>
-        <div class="input-container">
-          <div class="outer-username-container">
-            <div class="username-container">
-              <label for="username">Username</label>
-              <div class="input-wrapper input-wrapper-username">
-                <input type="text" id="username" placeholder="username">
-                <span class="clear-btn" onclick="this.parentElement.querySelector('input').value=''">&times;</span>
-              </div>
-            </div>
-          </div>
-          <div class="outer-email-container">
-            <div class="email-container">
-              <label for="email">Email</label>
-              <div class="input-wrapper input-wrapper-email">
-                <input type="email" id="email" placeholder="email">
-                <span class="clear-btn" onclick="this.parentElement.querySelector('input').value=''">&times;</span>
-              </div>
-            </div>
-          </div>
-          <div class="outer-password-container">
-            <div class="password-container">
-              <label for="password">Password</label>
-              <div class="input-wrapper input-wrapper-password">
-                <input type="password" id="password" placeholder="password">
-                <span class="clear-btn" onclick="this.parentElement.querySelector('input').value=''">&times;</span>
-                <span class="show-password show-password-js">👁</span>
-              </div>
-            </div>
-          </div>
-          <div class="outer-re-enter-password-container">
-            <div class="re-enter-password-container">
-              <label for="re-enter-password">Re-enter Password</label>
-              <div class="input-wrapper input-wrapper-re-enter-password">
-                <input type="password" id="re-enter-password" placeholder="password">
-                <span class="clear-btn" onclick="this.parentElement.querySelector('input').value=''">&times;</span>
-                <span class="show-re-enter-password show-re-enter-password-js">👁</span>
-              </div>
-            </div>
-          </div>
-          <div class="accessibility-container">
-            <label for="accessibility">Accessibility Preferences</label>
-            <select id="accessibility" name="accessibility">
-              <option value="">Select an option</option>
-              <option value="wheelchair">Wheelchair user</option>
-              <option value="mobility">Mobility impairment</option>
-              <option value="visual">Visual impairment</option>
-              <option value="anxiety">Anxiety-sensitive mode</option>
-            </select>
-          </div>
-          <p class="signUp-error signUp-error-js" role="alert" aria-live="polite"></p>
-        </div>
-        <div class="signUp-container">
-          <button type="button" class="signUp signUp-js">Sign Up</button>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email <span class="required">*</span></label>
+        <input class="form-input" type="email" id="email" placeholder="your@email.com" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password <span class="required">*</span></label>
+        <div class="input-with-toggle">
+          <input class="form-input" type="password" id="password" placeholder="Create password" autocomplete="new-password">
+          <button type="button" class="toggle-vis show-password-js">👁</button>
         </div>
       </div>
+
+      <div class="form-group">
+        <label class="form-label" for="re-enter-password">Confirm Password <span class="required">*</span></label>
+        <div class="input-with-toggle">
+          <input class="form-input" type="password" id="re-enter-password" placeholder="Re-enter password" autocomplete="new-password">
+          <button type="button" class="toggle-vis show-re-enter-password-js">👁</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="accessibility">Accessibility Preferences</label>
+        <select class="form-select" id="accessibility" name="accessibility">
+          <option value="">Select an option (optional)</option>
+          <option value="wheelchair">Wheelchair user</option>
+          <option value="mobility">Mobility impairment</option>
+          <option value="visual">Visual impairment</option>
+          <option value="anxiety">Anxiety-sensitive mode</option>
+        </select>
+      </div>
+
+      <p class="form-error signUp-error-js" role="alert" aria-live="polite"></p>
+
+      <button type="button" class="form-submit signUp-js">Sign Up</button>
+
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Log In</a>
+      </div>
     </div>
-    <script src="../scripts/api.js"></script>
-    <script src="../scripts/signUp.js"></script>
-  </body>
+  </div>
+
+  <script src="../scripts/api.js"></script>
+  <script src="../scripts/signUp.js"></script>
+</body>
 </html>

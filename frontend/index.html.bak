@@ -13,9 +13,10 @@
 </head>
 <body class="page-body">
 
+  <!-- Header -->
   <header class="app-header">
     <div class="logo" onclick="window.location.href='index.html'">
-      <div class="logo-mark">C</div>
+      <div class="logo-circle">C</div>
       <span class="logo-text">Concordia Safety</span>
     </div>
     <nav class="desktop-nav">
@@ -25,20 +26,27 @@
       <a href="pages/profile.html">Profile</a>
     </nav>
     <div class="header-actions">
-      <button type="button" class="header-btn crisis-btn-js" title="Crisis Mode">⚠</button>
+      <button type="button" class="header-btn crisis-btn-js" title="Crisis Mode">!</button>
       <button type="button" class="header-btn avatar-btn-js" title="Profile" onclick="window.location.href='pages/profile.html'">U</button>
     </div>
   </header>
 
-  <div id="offline-banner">📡 Offline — Using cached data</div>
-  <div class="crisis-banner">🔴 CRISIS MODE — Map only, stay safe</div>
+  <!-- Offline Banner -->
+  <div id="offline-banner">📡 Offline Mode — Using cached data. Data may be delayed.</div>
 
+  <!-- Crisis Banner -->
+  <div class="crisis-banner">⚠️ CRISIS MODE ACTIVE — Map only, stay safe</div>
+
+  <!-- Main Content -->
   <main class="homepage-layout">
+    <!-- Map Column -->
     <div class="map-column">
       <div class="map-section">
         <div class="map-container">
           <div id="map-js"></div>
+          <!-- Legend toggle (mobile) -->
           <button type="button" class="map-legend-toggle" id="legend-toggle-js">🗺</button>
+          <!-- Legend -->
           <div class="map-legend collapsed" id="map-legend-js">
             <div class="map-legend-title">Legend</div>
             <div class="map-legend-item"><img src="images/concordia-logo.png" alt=""> Building</div>
@@ -52,25 +60,27 @@
       </div>
     </div>
 
+    <!-- List Column (alert cards) -->
     <div class="list-column">
-      <div class="sidebar-header">
-        <h2>Campus Alerts</h2>
-        <p class="sidebar-subtitle" id="alert-summary-js">Loading...</p>
-      </div>
+      <!-- Filter pills -->
       <div class="filter-bar" id="filter-bar-js">
         <button type="button" class="filter-pill active" data-filter="all">All</button>
         <button type="button" class="filter-pill" data-filter="ACTIVE">Active <span class="pill-badge" id="active-count-js">0</span></button>
         <button type="button" class="filter-pill" data-filter="UNDER REVIEW">Review</button>
         <button type="button" class="filter-pill" data-filter="RESOLVED">Resolved</button>
       </div>
+
+      <!-- Alert card list -->
       <div class="alert-section" id="alert-list-js">
         <div class="alert-empty">Loading alerts...</div>
       </div>
     </div>
   </main>
 
+  <!-- Crisis Call button (visible in crisis mode) -->
   <a href="tel:5148483717" class="crisis-call">📞 Call Campus Security: 514-848-3717</a>
 
+  <!-- Bottom Tab Bar (mobile only) -->
   <nav class="tab-bar">
     <a class="tab-item active" href="index.html">
       <span class="tab-icon">🗺</span>
@@ -83,6 +93,7 @@
     </a>
   </nav>
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="scripts/api.js"></script>
   <script src="scripts/auth.js"></script>

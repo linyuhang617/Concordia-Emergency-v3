@@ -1,0 +1,226 @@
+/* ============================================
+   Map styles — Leaflet container + search + legend
+   ============================================ */
+
+.map-container {
+  width: 100%;
+  height: 45vh;
+  min-height: 350px;
+  border-radius: var(--radius-map);
+  overflow: hidden;
+  position: relative;
+  background: #ddd;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.map-container #map-js {
+  min-height: 350px;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Alert Markers --- */
+.alert-marker-js {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  transition: box-shadow 0.3s;
+}
+
+/* --- Destination Search Control --- */
+.ds-control {
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-elevated);
+  padding: 8px;
+  min-width: 220px;
+  max-width: 300px;
+}
+
+.ds-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.ds-input {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color 0.15s;
+}
+.ds-input:focus {
+  border-color: var(--primary);
+}
+
+.ds-btn {
+  padding: 7px 12px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s;
+}
+.ds-btn:hover { background: var(--primary-dark); }
+
+.ds-clear {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: background 0.15s;
+}
+.ds-clear:hover { background: var(--border); }
+
+.ds-suggestions {
+  display: none;
+  list-style: none;
+  margin-top: 4px;
+  max-height: 160px;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+}
+
+.ds-suggestion-item {
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.ds-suggestion-item:hover { background: var(--primary-light); }
+.ds-suggestion-item:last-child { border-bottom: none; }
+
+.ds-status {
+  font-size: 0.75rem;
+  padding: 4px 2px 0;
+  min-height: 1em;
+  color: var(--text-muted);
+}
+
+.ds-dest-pin {
+  font-size: 24px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+}
+
+/* --- Map Legend (bottom-right overlay on mobile) --- */
+.map-legend {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.7rem;
+  box-shadow: var(--shadow-card);
+  z-index: 500;
+  max-width: 160px;
+}
+
+.map-legend-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 0.75rem;
+  color: var(--text);
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 0;
+  color: var(--text);
+}
+
+.map-legend-item img {
+  width: 14px; height: 14px;
+}
+
+.map-legend-toggle {
+  display: none;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  box-shadow: var(--shadow-card);
+  position: absolute;
+  bottom: 8px; right: 8px;
+  z-index: 501;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: none;
+}
+
+/* Mobile: collapsible legend */
+@media (max-width: 768px) {
+  .map-legend.collapsed { display: none; }
+  .map-legend-toggle { display: flex; }
+  .map-legend-toggle.expanded { display: none; }
+}
+
+/* --- Desktop: map + sidebar layout --- */
+@media (min-width: 769px) {
+  .homepage-layout {
+    display: flex;
+    height: calc(100dvh - var(--header-h));
+  }
+
+  .homepage-layout .map-column {
+    flex: 0 0 65%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .map-section {
+    height: 100%;
+    padding: 0;
+  }
+
+  .homepage-layout .map-container {
+    height: 100%;
+    min-height: unset;
+    border-radius: 0;
+  }
+
+  .homepage-layout .list-column {
+    flex: 1;
+    overflow-y: auto;
+    border-left: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .map-legend {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    max-width: 170px;
+    background: rgba(255,255,255,0.95);
+    box-shadow: var(--shadow-elevated);
+    border-radius: 10px;
+    padding: 10px 14px;
+    z-index: 500;
+  }
+
+  .map-legend.collapsed { display: block; }
+  .map-legend-toggle { display: none; }
+}

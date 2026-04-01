@@ -1,62 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="../images/concordia-logo.png">
-    <title>Log In — Concordia Emergency</title>
-    <link rel="stylesheet" href="../styles/logIn.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <div class="header">
-      <div class="header-top">
-        <div class="logo"><img src="../images/concordia-full-logo.svg" style="height:35px;"></div>
-        <div class="auth-buttons">
-          <div class="login" onclick="window.location.href='logIn.html'"><img src="../images/user-regular.png" style="height:16px;vertical-align:middle;margin-right:6px;filter:invert(19%) sepia(72%) saturate(1200%) hue-rotate(320deg) brightness(80%)"> Log In</div>
-          <div class="divider">|</div>
-          <div class="signup" onclick="window.location.href='signUp.html'">Sign Up</div>
-        </div>
-        <div class="mobile-menu">&#9776;</div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In — Concordia Safety</title>
+  <link rel="icon" href="../images/concordia-logo.png">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/forms.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <div class="logo-circle">C</div>
       </div>
-      <div class="header-bottom">
-        <div class="crisis">⚠️ Click for Crisis Mode</div>
+      <h2 class="auth-title">Log In</h2>
+
+      <div class="form-group">
+        <label class="form-label" for="username">Username</label>
+        <input class="form-input" type="text" id="username" placeholder="Enter username" autocomplete="username">
       </div>
-    </div>
-    <div class="dropdown-menu" id="dropdownMenu">
-      <div class="login" onclick="window.location.href='logIn.html'">Log In</div>
-      <div class="signup" onclick="window.location.href='signUp.html'">Sign Up</div>
-    </div>
-    <div class="main-container">
-      <div class="inner-container">
-        <div class="top-bar"></div>
-        <div class="title"><p>Log In</p></div>
-        <div class="input-container">
-          <div class="outer-username-container">
-            <div class="username-container">
-              <label for="username">Username</label>
-              <div class="input-wrapper input-wrapper-username">
-                <input type="text" id="username" placeholder="username">
-                <span class="clear-btn" onclick="this.parentElement.querySelector('input').value=''">&times;</span>
-              </div>
-            </div>
-          </div>
-          <div class="outer-password-container">
-            <div class="password-container">
-              <label for="password">Password</label>
-              <div class="input-wrapper input-wrapper-password">
-                <input type="password" id="password" placeholder="password">
-                <span class="clear-btn" onclick="this.parentElement.querySelector('input').value=''">&times;</span>
-                <span class="show-password show-password-js">👁</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="logIn-container">
-          <button type="button" class="logIn logIn-js">Log In</button>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <div class="input-with-toggle">
+          <input class="form-input" type="password" id="password" placeholder="Enter password" autocomplete="current-password">
+          <button type="button" class="toggle-vis show-password-js">👁</button>
         </div>
       </div>
+
+      <button type="button" class="form-submit logIn-js">Log In</button>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="signup.html">Sign Up</a>
+      </div>
     </div>
-    <script src="../scripts/api.js"></script>
-    <script src="../scripts/logIn.js"></script>
-  </body>
+  </div>
+
+  <script src="../scripts/api.js"></script>
+  <script src="../scripts/logIn.js"></script>
+</body>
 </html>

@@ -11,6 +11,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:8080",
+        "http://localhost:5500",
         "https://concordia.ailasai.com",
     ],
     allow_credentials=True,
