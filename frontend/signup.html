@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — Concordia Safety</title>
+<link rel="stylesheet" href="styles/ios.css">
+</head>
+<body>
+<div class="device" style="background:var(--crimson)">
+  <div class="bg-pattern"></div>
+  <div class="auth-wrap">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">C</div>
+      <h1>Concordia Safety</h1>
+      <p>Create your account</p>
+    </div>
+
+    <div class="auth-card">
+      <div class="field-row">
+        <label class="field-label">Username</label>
+        <input class="field-input" type="text" id="username" placeholder="Choose a username" autocomplete="username">
+      </div>
+      <div class="field-row">
+        <label class="field-label">Email</label>
+        <input class="field-input" type="email" id="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="field-row">
+        <label class="field-label">Password</label>
+        <input class="field-input" type="password" id="password" placeholder="At least 6 characters" autocomplete="new-password">
+      </div>
+      <div class="field-row">
+        <label class="field-label">Confirm</label>
+        <input class="field-input" type="password" id="confirm-password" placeholder="Re-enter password" autocomplete="new-password">
+      </div>
+    </div>
+
+    <div class="auth-error" id="error-msg"></div>
+
+    <button class="auth-submit" type="button" id="signup-btn">Sign Up</button>
+
+    <div class="auth-footer">
+      Already have an account? <a href="index.html">Log In</a>
+    </div>
+  </div>
+</div>
+
+<script src="scripts/api.js"></script>
+<script>
+// If already logged in, go to app
+if (localStorage.getItem('token')) {
+  window.location.href = 'app.html'
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-msg')
+  el.textContent = msg
+  el.style.display = 'block'
+}
+
+function clearError() {
+  document.getElementById('error-msg').style.display = 'none'
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
+async function handleSignUp() {
+  clearError()
+  const username = document.getElementById('username').value.trim()
+  const email = document.getElementById('email').value.trim()
+  const password = document.getElementById('password').value
+  const confirmPassword = document.getElementById('confirm-password').value
+
+  if (!username || !email || !password || !confirmPassword) {
+    showError('Please fill in all fields.')
+    return
+  }
+  if (!isValidEmail(email)) {
+    showError('Please enter a valid email address.')
+    return
+  }
+  if (password.length < 6) {
+    showError('Password must be at least 6 characters.')
+    return
+  }
+  if (password !== confirmPassword) {
+    showError('Passwords do not match.')
+    return
+  }
+
+  try {
+    const result = await window.API.signup({
+      username, email, password, accessibility: []
+    })
+
+    if (result.detail) {
+      showError(result.detail)
+      return
+    }
+
+    alert('Sign up successful! Please log in.')
+    window.location.href = 'index.html'
+  } catch (e) {
+    showError('Connection error. Is the server running?')
+  }
+}
+
+document.getElementById('signup-btn').addEventListener('click', handleSignUp)
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleSignUp()
+})
+</script>
+</body>
+</html>
