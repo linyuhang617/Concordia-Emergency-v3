@@ -69,6 +69,8 @@ async def update_alert(
     db: AsyncSession = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
+    if data.status == 'RESOLVED' and current_user.role != 'staff':
+        raise HTTPException(status_code=403, detail="Staff only")
     alert = await alert_service.update_alert(db, alert_id, data.model_dump(exclude_none=True))
     if not alert:
         raise HTTPException(status_code=404, detail="Alert not found")
