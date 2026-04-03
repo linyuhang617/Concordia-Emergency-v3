@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirm Report — Concordia Safety</title>
+<link rel="stylesheet" href="styles/ios.css">
+<style>
+.content {
+  position: absolute;
+  top: 52px;
+  bottom: 0;
+  left: 0; right: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 40px;
+}
+.large-title {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.37px;
+  color: var(--label);
+  padding: 16px 20px 4px;
+}
+.subtitle {
+  font-size: 15px;
+  color: var(--tertiary-label);
+  padding: 0 20px 16px;
+  letter-spacing: -0.24px;
+}
+.progress-wrap { padding: 12px 20px 0 }
+.progress-track {
+  height: 3px;
+  background: var(--fill);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--crimson);
+  border-radius: 3px;
+}
+.step-label {
+  font-size: 13px;
+  color: var(--tertiary-label);
+  padding: 6px 20px 4px;
+  letter-spacing: -0.08px;
+}
+.detail-label {
+  font-size: 13px;
+  color: var(--tertiary-label);
+  letter-spacing: -0.08px;
+}
+.detail-value {
+  font-size: 17px;
+  color: var(--label);
+  letter-spacing: -0.41px;
+  margin-top: 2px;
+}
+.submit-btn {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 24px 16px 12px;
+  padding: 16px;
+  background: var(--crimson);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.41px;
+  cursor: pointer;
+  font-family: var(--sf);
+}
+.submit-btn:active { opacity: 0.8; transform: scale(0.98) }
+.submit-btn:disabled { opacity: 0.4; cursor: default; transform: none }
+.back-btn {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 0 16px 24px;
+  padding: 14px;
+  background: none;
+  color: var(--blue);
+  border: 1px solid var(--separator);
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.41px;
+  cursor: pointer;
+  font-family: var(--sf);
+  text-align: center;
+}
+.back-btn:active { opacity: 0.6 }
+
+/* Success overlay */
+.success-overlay {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+}
+.success-card {
+  background: var(--grouped-bg);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  margin: 0 32px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+}
+.success-icon { font-size: 48px; margin-bottom: 12px }
+.success-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--label);
+  letter-spacing: -0.35px;
+  margin-bottom: 8px;
+}
+.success-sub {
+  font-size: 15px;
+  color: var(--tertiary-label);
+  letter-spacing: -0.24px;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+.success-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--crimson);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--sf);
+}
+.success-btn:active { opacity: 0.8 }
+</style>
+</head>
+<body>
+<div class="device" style="background:var(--bg)">
+
+  <div class="nav-bar">
+    <button class="nav-back" type="button" onclick="history.back()">
+      <svg width="12" height="20" viewBox="0 0 12 20" fill="none"><path d="M10 2L2 10l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back
+    </button>
+    <span class="nav-title">Confirm</span>
+  </div>
+
+  <div class="content">
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+    <div class="step-label">Step 3 of 3</div>
+
+    <div class="large-title">Confirm Report</div>
+    <div class="subtitle">Review the details before submitting.</div>
+
+    <div class="group-header">Report Summary</div>
+    <div class="inset-group" id="summary">
+      <div class="list-row" style="cursor:default">
+        <div class="row-body">
+          <div class="detail-label">Hazard Type</div>
+          <div class="detail-value" id="confirm-type">—</div>
+        </div>
+      </div>
+      <div class="list-row" style="cursor:default">
+        <div class="row-body">
+          <div class="detail-label">Building</div>
+          <div class="detail-value" id="confirm-building">—</div>
+        </div>
+      </div>
+      <div class="list-row" style="cursor:default">
+        <div class="row-body">
+          <div class="detail-label">Description</div>
+          <div class="detail-value" id="confirm-description" style="font-size:15px;line-height:1.4">—</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="submit-btn" type="button" id="submit-btn">Submit Report</button>
+    <button class="back-btn" type="button" onclick="history.back()">← Edit Details</button>
+  </div>
+
+  <!-- Success Popup -->
+  <div class="success-overlay" id="success-overlay">
+    <div class="success-card">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Report Submitted</div>
+      <div class="success-sub">Your hazard report has been submitted. It will appear on the map shortly.</div>
+      <button class="success-btn" type="button" id="success-ok">Back to Map</button>
+    </div>
+  </div>
+</div>
+
+<script src="scripts/api.js"></script>
+<script src="scripts/auth.js"></script>
+<script src="data/building.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  await checkAuth()
+
+  var saved = sessionStorage.getItem('v3-report')
+  if (!saved) {
+    window.location.href = 'report.html'
+    return
+  }
+
+  var report = JSON.parse(saved)
+
+  // Find building info
+  var bldg = window.buildings.find(function(b) { return b.code === report.building_code })
+  var buildingDisplay = bldg ? bldg.code + ' — ' + bldg.buildingName : report.building_code
+
+  // Display summary
+  document.getElementById('confirm-type').textContent = report.type
+  document.getElementById('confirm-building').textContent = buildingDisplay
+  document.getElementById('confirm-description').textContent = report.description
+
+  // Submit
+  document.getElementById('submit-btn').addEventListener('click', async function() {
+    var btn = this
+    btn.disabled = true
+
+    var lat = bldg ? String(bldg.lat) : '45.4973'
+    var lng = bldg ? String(bldg.lng) : '-73.5789'
+
+    var payload = {
+      type: report.type,
+      building_code: report.building_code,
+      location_lat: lat,
+      location_lng: lng,
+      description: report.description,
+      status: 'ACTIVE',
+      verification: 'Reported by 1 student'
+    }
+
+    try {
+      var result = await window.API.createAlert(payload)
+      if (result && result.id) {
+        sessionStorage.removeItem('v3-report')
+        document.getElementById('success-overlay').style.display = 'flex'
+      } else {
+        alert('Submission failed. Please try again.')
+        btn.disabled = false
+      }
+    } catch (e) {
+      alert('Network error. Please try again.')
+      btn.disabled = false
+    }
+  })
+
+  // Success OK
+  document.getElementById('success-ok').addEventListener('click', function() {
+    window.location.href = 'app.html'
+  })
+})
+</script>
+</body>
+</html>

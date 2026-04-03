@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In — Concordia Safety</title>
+<link rel="stylesheet" href="styles/ios.css">
+</head>
+<body>
+<div class="device" style="background:var(--crimson)">
+  <div class="bg-pattern"></div>
+  <div class="auth-wrap">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">C</div>
+      <h1>Concordia Safety</h1>
+      <p>Campus emergency reporting</p>
+    </div>
+
+    <div class="auth-card">
+      <div class="field-row">
+        <label class="field-label">Username</label>
+        <input class="field-input" type="text" id="username" placeholder="Your username" autocomplete="username">
+      </div>
+      <div class="field-row">
+        <label class="field-label">Password</label>
+        <input class="field-input" type="password" id="password" placeholder="Required" autocomplete="current-password">
+      </div>
+    </div>
+
+    <div class="auth-error" id="error-msg"></div>
+
+    <button class="auth-submit" type="button" id="login-btn">Log In</button>
+
+    <div class="auth-footer">
+      Don't have an account? <a href="signup.html">Sign Up</a>
+    </div>
+  </div>
+</div>
+
+<script src="scripts/api.js"></script>
+<script>
+// If already logged in, go to app
+if (localStorage.getItem('token')) {
+  window.location.href = 'app.html'
+}
+
+function showError(msg) {
+  const el = document.getElementById('error-msg')
+  el.textContent = msg
+  el.style.display = 'block'
+}
+
+function clearError() {
+  document.getElementById('error-msg').style.display = 'none'
+}
+
+async function handleLogin() {
+  clearError()
+  const username = document.getElementById('username').value.trim()
+  const password = document.getElementById('password').value
+
+  if (!username || !password) {
+    showError('Please enter username and password.')
+    return
+  }
+
+  try {
+    const result = await window.API.login({ username, password })
+
+    if (result.detail || !result.token) {
+      showError('Invalid username or password.')
+      return
+    }
+
+    localStorage.setItem('token', result.token)
+    window.location.href = 'app.html'
+  } catch (e) {
+    showError('Connection error. Is the server running?')
+  }
+}
+
+document.getElementById('login-btn').addEventListener('click', handleLogin)
+
+// Enter key submits
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') handleLogin()
+})
+</script>
+</body>
+</html>
