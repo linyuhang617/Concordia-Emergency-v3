@@ -2,7 +2,7 @@ import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./concordia.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./data/concordia.db")
 
 # Render PostgreSQL URL starts with postgres://, SQLAlchemy needs postgresql+asyncpg://
 if DATABASE_URL.startswith("postgres://"):
