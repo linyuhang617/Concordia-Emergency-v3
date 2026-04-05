@@ -530,24 +530,13 @@ function initCrisisMode() {
 
   btn.addEventListener('click', function() {
     isCrisisMode = !isCrisisMode
-    var device = document.querySelector('.device')
-    var content = document.querySelector('.content')
-    var tabBar = document.querySelector('.tab-bar')
-    var mapEl = document.getElementById('map')
-
     if (isCrisisMode) {
-      device.style.background = '#912338'
-      if (content) { content.style.opacity = '0.3'; content.style.pointerEvents = 'none' }
-      if (tabBar) { tabBar.style.opacity = '0.3'; tabBar.style.pointerEvents = 'none' }
-      if (mapEl) { mapEl.style.boxShadow = '0 0 20px 5px rgba(0,0,0,0.5)'; mapEl.style.position = 'relative'; mapEl.style.zIndex = '10' }
-      btn.innerHTML = '<span style="font-size:12px">❎</span>'
+      document.body.classList.add('crisis-mode')
+      btn.textContent = '❎'
       btn.title = 'Exit Crisis Mode'
     } else {
-      device.style.background = 'var(--bg)'
-      if (content) { content.style.opacity = ''; content.style.pointerEvents = '' }
-      if (tabBar) { tabBar.style.opacity = ''; tabBar.style.pointerEvents = '' }
-      if (mapEl) { mapEl.style.boxShadow = ''; mapEl.style.zIndex = '' }
-      btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
+      document.body.classList.remove('crisis-mode')
+      btn.textContent = '⚠️'
       btn.title = 'Crisis Mode'
     }
   })

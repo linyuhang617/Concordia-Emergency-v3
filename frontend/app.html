@@ -4,30 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Concordia Emergency</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="styles/web.css">
 </head>
-<body>
-<script src="scripts/api.js"></script>
-<script src="scripts/auth.js"></script>
-<script>
-(async function() {
-  const user = await checkAuth()
-  if (!user) return
-  document.body.innerHTML = `
-    <div class="auth-page">
-      <div class="auth-card">
-        <div class="auth-logo">
-          <div class="auth-logo-icon">C</div>
-          <h1>Welcome, ${user.username}</h1>
-          <p>${user.email}</p>
-        </div>
-        <p style="text-align:center;color:var(--text-sec);font-size:13px;margin-bottom:20px;">
-          Slice 2 coming next — App Shell + Map
-        </p>
-        <button class="btn-primary" onclick="logout()">Log Out</button>
+<body class="app-body">
+
+  <!-- Nav Bar -->
+  <nav class="nav-bar">
+    <a class="nav-brand" href="app.html">
+      <div class="nav-brand-icon">C</div>
+      Concordia Emergency
+    </a>
+
+    <div class="nav-search-wrap">
+      <input type="text" id="ds-input" placeholder="Search buildings or address (e.g. EV, Hall)…" autocomplete="off">
+      <div class="nav-search-btns">
+        <button id="ds-btn"   type="button">Go</button>
+        <button id="ds-clear" type="button" style="display:none">✕</button>
       </div>
-    </div>`
-})()
-</script>
+      <ul id="ds-suggestions"></ul>
+    </div>
+
+    <div class="nav-right">
+      <span id="ds-status"></span>
+      <button class="nav-icon-btn" id="crisis-btn" type="button" title="Crisis Mode">⚠️</button>
+      <a class="nav-avatar" id="profile-initial" href="profile.html" title="Profile">?</a>
+    </div>
+  </nav>
+
+  <!-- App Layout -->
+  <div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Campus Alerts</div>
+        <div class="seg-control">
+          <button class="seg-item active" data-f="all"      type="button">All</button>
+          <button class="seg-item"        data-f="active"   type="button">Active</button>
+          <button class="seg-item"        data-f="review"   type="button">Review</button>
+          <button class="seg-item"        data-f="resolved" type="button">Resolved</button>
+        </div>
+      </div>
+      <div class="sidebar-stats" id="alert-summary">Loading…</div>
+      <div id="alert-list"></div>
+      <div class="sidebar-report-btn">
+        <a href="report.html">＋ Report Hazard</a>
+      </div>
+    </aside>
+
+    <!-- Map -->
+    <div class="map-container">
+      <div id="map"></div>
+      <div id="offline-banner">📵 Offline — showing campus buildings only</div>
+    </div>
+
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="data/building.js"></script>
+  <script src="scripts/api.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/map.js"></script>
 </body>
 </html>
