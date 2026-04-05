@@ -14,6 +14,8 @@ function logout() {
 // Apply text size preference to .device element
 function applyTextSize(size) {
   document.documentElement.setAttribute("data-text-size", size || "medium")
+  var sizeMap = { small: "13px", medium: "15px", large: "18px" }
+  document.documentElement.style.fontSize = sizeMap[size] || "15px"
 }
 
 // Load and apply text size on page load (non-blocking)

@@ -478,12 +478,12 @@ body.app-body {
 /* ── Offline Banner ──────────────────────────────────── */
 #offline-banner {
   position: absolute;
-  bottom: 20px; left: 50%; transform: translateX(-50%);
+  bottom: 24px; left: 50%; transform: translateX(-50%);
   background: var(--orange);
   color: white;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 13px; font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-size: 15px; font-weight: 600;
   z-index: 800;
   display: none;
   white-space: nowrap;
@@ -497,3 +497,8 @@ body.crisis-mode .sidebar { background: rgba(80,0,0,0.95); }
 body.crisis-mode .sidebar-title,
 body.crisis-mode .row-title { color: #ffd0d0; }
 body.crisis-mode #map { filter: brightness(0.85); }
+
+/* ── Text Size ─────────────────────────────────────── */
+[data-text-size="small"]  { font-size: 14px; }
+[data-text-size="medium"] { font-size: 16px; }
+[data-text-size="large"]  { font-size: 19px; }

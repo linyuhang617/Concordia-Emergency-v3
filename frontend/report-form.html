@@ -3,170 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Report — Concordia Safety</title>
-<link rel="stylesheet" href="styles/ios.css">
+<title>Report — Concordia Emergency</title>
+<link rel="stylesheet" href="styles/web.css">
 <style>
-.content {
-  position: absolute;
-  top: 52px;
-  bottom: 0;
-  left: 0; right: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 40px;
-}
-.large-title {
-  font-size: 34px;
-  font-weight: 700;
-  letter-spacing: 0.37px;
-  color: var(--label);
-  padding: 16px 20px 4px;
-}
-.subtitle {
-  font-size: 15px;
-  color: var(--tertiary-label);
-  padding: 0 20px 16px;
-  letter-spacing: -0.24px;
-}
-.progress-wrap { padding: 12px 20px 0 }
-.progress-track {
-  height: 3px;
-  background: var(--fill);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  width: 66.6%;
-  background: var(--crimson);
-  border-radius: 3px;
-}
-.step-label {
-  font-size: 13px;
-  color: var(--tertiary-label);
-  padding: 6px 20px 4px;
-  letter-spacing: -0.08px;
-}
-
-/* Form elements */
+.report-page { min-height:100vh; background:#f2f2f7; display:flex; flex-direction:column; }
+.report-content { max-width:680px; margin:80px auto 48px; padding:0 24px 48px; width:100%; }
+.progress-track { height:4px; background:#e5e5ea; border-radius:4px; overflow:hidden; margin-bottom:6px; }
+.progress-fill { height:100%; background:var(--crimson); border-radius:4px; }
+.step-label { font-size:13px; color:#8e8e93; margin-bottom:20px; }
+.page-title { font-size:28px; font-weight:700; color:#1c1c1e; margin-bottom:6px; }
+.page-sub { font-size:15px; color:#8e8e93; margin-bottom:24px; }
+.form-card { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.07); margin-bottom:16px; }
+.form-card-header { padding:12px 20px 8px; font-size:13px; font-weight:600; color:#8e8e93; text-transform:uppercase; letter-spacing:0.04em; border-bottom:1px solid #f2f2f7; }
+.form-row { padding:14px 20px; border-bottom:1px solid #f2f2f7; display:flex; flex-direction:column; gap:4px; }
+.form-row:last-child { border-bottom:none; }
+.form-label { font-size:12px; color:#8e8e93; font-weight:500; text-transform:uppercase; letter-spacing:0.04em; }
 .form-select {
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 17px;
-  color: var(--label);
-  letter-spacing: -0.41px;
-  background: none;
-  font-family: var(--sf);
-  padding: 2px 0;
-  -webkit-appearance: none;
+  width:100%; border:none; outline:none; font-size:16px; color:#1c1c1e;
+  background:none; font-family:inherit; padding:2px 0; -webkit-appearance:none;
 }
 .form-textarea {
-  width: 100%;
-  border: none;
-  outline: none;
-  font-size: 17px;
-  color: var(--label);
-  letter-spacing: -0.41px;
-  background: none;
-  font-family: var(--sf);
-  resize: none;
-  min-height: 80px;
-  line-height: 1.4;
+  width:100%; border:none; outline:none; font-size:16px; color:#1c1c1e;
+  background:none; font-family:inherit; resize:none; min-height:80px; line-height:1.5;
 }
-.form-textarea::placeholder,
-.form-select option:first-child {
-  color: rgba(60,60,67,0.3);
+.form-textarea::placeholder { color:#c7c7cc; }
+.form-input {
+  width:100%; border:none; outline:none; font-size:16px; color:#1c1c1e;
+  background:none; font-family:inherit; padding:2px 0;
 }
-.detail-label {
-  font-size: 13px;
-  color: var(--tertiary-label);
-  letter-spacing: -0.08px;
-  margin-bottom: 4px;
-}
-
-/* Submit button */
-.submit-btn {
-  display: block;
-  width: calc(100% - 32px);
-  margin: 24px 16px 16px;
-  padding: 16px;
-  background: var(--crimson);
-  color: #fff;
-  border: none;
-  border-radius: 14px;
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: -0.41px;
-  cursor: pointer;
-  font-family: var(--sf);
-}
-.submit-btn:active { opacity: 0.8; transform: scale(0.98) }
-.submit-btn:disabled { opacity: 0.4; cursor: default; transform: none }
-
-/* Error */
 .form-error {
-  display: none;
-  margin: 0 16px 8px;
-  padding: 10px 14px;
-  background: rgba(255,59,48,0.12);
-  border-radius: 10px;
-  font-size: 13px;
-  color: var(--red);
-  text-align: center;
-  letter-spacing: -0.08px;
+  display:none; padding:10px 16px; background:rgba(255,59,48,0.1);
+  border-radius:10px; font-size:13px; color:#ff3b30; margin-bottom:12px;
 }
+.submit-btn {
+  display:block; width:100%; padding:15px; background:var(--crimson); color:#fff;
+  border:none; border-radius:12px; font-size:16px; font-weight:600; cursor:pointer;
+  font-family:inherit; margin-top:8px; transition:opacity 0.15s;
+}
+.submit-btn:hover { opacity:0.85; }
+.submit-btn:disabled { opacity:0.4; cursor:default; }
 </style>
 </head>
 <body>
-<div class="device" style="background:var(--bg)">
-
-  <div class="nav-bar">
-    <button class="nav-back" type="button" onclick="window.location.href='report.html'">
-      <svg width="12" height="20" viewBox="0 0 12 20" fill="none"><path d="M10 2L2 10l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Back
-    </button>
-    <span class="nav-title">Report</span>
-  </div>
-
-  <div class="content">
-    <div class="progress-wrap">
-      <div class="progress-track"><div class="progress-fill"></div></div>
+<div class="report-page">
+  <nav class="nav-bar">
+    <a class="nav-brand" href="report.html">
+      <div class="nav-brand-icon">C</div>
+      Concordia Emergency
+    </a>
+    <span style="font-weight:600;font-size:17px;color:#fff;position:absolute;left:50%;transform:translateX(-50%);">Report Hazard</span>
+    <div class="nav-right">
+      <button id="crisis-btn" class="nav-icon-btn" title="Crisis Mode">⚠️</button>
+      <a class="nav-avatar" id="profile-initial" href="profile.html" title="Profile">?</a>
     </div>
-    <div class="step-label">Step 2 of 3</div>
+  </nav>
 
-    <div class="large-title" id="form-title">Details</div>
-    <div class="subtitle" id="form-subtitle">Fill in the details about the hazard.</div>
+  <div class="report-content">
+    <div class="page-title" id="form-title">Details</div>
+    <div class="page-sub" id="form-subtitle">Fill in the details about the hazard.</div>
+    <div class="progress-track"><div class="progress-fill" style="width:66.6%"></div></div>
+    <div class="step-label">Step 2 of 3</div>
 
     <div class="form-error" id="form-error"></div>
 
-    <!-- Building -->
-    <div class="group-header">Location</div>
-    <div class="inset-group">
-      <div class="list-row" style="cursor:default">
-        <div class="row-body">
-          <div class="detail-label">Building</div>
-          <select class="form-select" id="building">
-            <option value="">Choose a building...</option>
-          </select>
-        </div>
+    <div class="form-card">
+      <div class="form-card-header">Location</div>
+      <div class="form-row">
+        <div class="form-label">Building</div>
+        <select class="form-select" id="building">
+          <option value="">Choose a building...</option>
+        </select>
       </div>
     </div>
 
-    <!-- Description -->
-    <div class="group-header">Description</div>
-    <div class="inset-group">
-      <div class="list-row" style="cursor:default;align-items:flex-start;min-height:100px">
-        <div class="row-body">
-          <textarea class="form-textarea" id="description" placeholder="Describe what you see..."></textarea>
-        </div>
+    <div class="form-card">
+      <div class="form-card-header">Description</div>
+      <div class="form-row">
+        <textarea class="form-textarea" id="description" placeholder="Describe what you see..."></textarea>
       </div>
     </div>
 
-    <!-- Type-specific fields (hidden by default, shown based on type) -->
     <div id="extra-fields"></div>
 
-    <button class="submit-btn" type="button" id="forward-btn">Forward →</button>
+    <button class="submit-btn" type="button" id="forward-btn">Next →</button>
   </div>
 </div>
 
@@ -174,93 +93,78 @@
 <script src="scripts/auth.js"></script>
 <script src="data/building.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', async function() {
-  await checkAuth()
+document.addEventListener("DOMContentLoaded", async function() {
+  var user = await checkAuth()
+  if (!user) return
+  var profileBtn = document.getElementById("profile-initial")
+  if (profileBtn && user.username) profileBtn.textContent = user.username.charAt(0).toUpperCase()
 
   var params = new URLSearchParams(window.location.search)
-  var type = params.get('type') || 'Others'
+  var type = params.get("type") || "Others"
 
-  document.getElementById('form-title').textContent = type
-  document.getElementById('form-subtitle').textContent = 'Provide details about the ' + type.toLowerCase() + '.'
+  document.getElementById("form-title").textContent = type
+  document.getElementById("form-subtitle").textContent = "Provide details about the " + type.toLowerCase() + "."
 
-  // Populate building dropdown
-  var select = document.getElementById('building')
+  var select = document.getElementById("building")
   window.buildings.forEach(function(b) {
-    var opt = document.createElement('option')
+    var opt = document.createElement("option")
     opt.value = b.code
-    opt.textContent = b.code + ' — ' + b.buildingName
+    opt.textContent = b.code + " — " + b.buildingName
     select.appendChild(opt)
   })
 
-  // Type-specific extra fields
-  var extra = document.getElementById('extra-fields')
-  if (type === 'Protest') {
+  var extra = document.getElementById("extra-fields")
+  if (type === "Protest") {
     extra.innerHTML =
-      '<div class="group-header">Additional Info</div>' +
-      '<div class="inset-group">' +
-        '<div class="list-row" style="cursor:default">' +
-          '<div class="row-body">' +
-            '<div class="detail-label">Intensity Level</div>' +
-            '<select class="form-select" id="intensity">' +
-              '<option value="Low">Low — Small group</option>' +
-              '<option value="Medium">Medium — Blocking some access</option>' +
-              '<option value="High">High — Fully blocking entrance</option>' +
-            '</select>' +
-          '</div>' +
-        '</div>' +
-      '</div>'
-  } else if (type === 'Elevator Malfunction') {
+      "<div class=\"form-card\">" +
+        "<div class=\"form-card-header\">Additional Info</div>" +
+        "<div class=\"form-row\">" +
+          "<div class=\"form-label\">Intensity Level</div>" +
+          "<select class=\"form-select\" id=\"intensity\">" +
+            "<option value=\"Low\">Low — Small group</option>" +
+            "<option value=\"Medium\">Medium — Blocking some access</option>" +
+            "<option value=\"High\">High — Fully blocking entrance</option>" +
+          "</select>" +
+        "</div>" +
+      "</div>"
+  } else if (type === "Elevator Malfunction") {
     extra.innerHTML =
-      '<div class="group-header">Additional Info</div>' +
-      '<div class="inset-group">' +
-        '<div class="list-row" style="cursor:default">' +
-          '<div class="row-body">' +
-            '<div class="detail-label">Affected Floors</div>' +
-            '<input class="field-input" type="text" id="floors" placeholder="e.g. 2-4" style="padding:8px 0">' +
-          '</div>' +
-        '</div>' +
-      '</div>'
+      "<div class=\"form-card\">" +
+        "<div class=\"form-card-header\">Additional Info</div>" +
+        "<div class=\"form-row\">" +
+          "<div class=\"form-label\">Affected Floors</div>" +
+          "<input class=\"form-input\" type=\"text\" id=\"floors\" placeholder=\"e.g. 2-4\">" +
+        "</div>" +
+      "</div>"
   }
 
-  // Forward button
-  document.getElementById('forward-btn').addEventListener('click', function() {
-    var building = document.getElementById('building').value
-    var description = document.getElementById('description').value.trim()
-    var errorEl = document.getElementById('form-error')
+  document.getElementById("forward-btn").addEventListener("click", function() {
+    var building = document.getElementById("building").value
+    var description = document.getElementById("description").value.trim()
+    var errorEl = document.getElementById("form-error")
 
-    // Validation
     if (!building) {
-      errorEl.textContent = 'Please choose a building.'
-      errorEl.style.display = 'block'
+      errorEl.textContent = "Please choose a building."
+      errorEl.style.display = "block"
       return
     }
-    if (type === 'Others' && !description) {
-      errorEl.textContent = 'Please enter a description.'
-      errorEl.style.display = 'block'
+    if (type === "Others" && !description) {
+      errorEl.textContent = "Please enter a description."
+      errorEl.style.display = "block"
       return
     }
-    errorEl.style.display = 'none'
+    errorEl.style.display = "none"
 
-    // Build description with extra fields
     var descParts = []
     if (description) descParts.push(description)
+    var intensityEl = document.getElementById("intensity")
+    if (intensityEl) descParts.push("Intensity: " + intensityEl.value)
+    var floorsEl = document.getElementById("floors")
+    if (floorsEl && floorsEl.value.trim()) descParts.push("Affected floors: " + floorsEl.value.trim())
+    var finalDesc = descParts.join(" | ") || "No additional details"
 
-    var intensityEl = document.getElementById('intensity')
-    if (intensityEl) descParts.push('Intensity: ' + intensityEl.value)
-
-    var floorsEl = document.getElementById('floors')
-    if (floorsEl && floorsEl.value.trim()) descParts.push('Affected floors: ' + floorsEl.value.trim())
-
-    var finalDesc = descParts.join(' | ') || 'No additional details'
-
-    // Save to sessionStorage
-    var report = {
-      type: type,
-      building_code: building,
-      description: finalDesc
-    }
-    sessionStorage.setItem('v3-report', JSON.stringify(report))
-    window.location.href = 'report-confirm.html'
+    sessionStorage.setItem("v3-report", JSON.stringify({ type: type, building_code: building, description: finalDesc }))
+    window.location.href = "report-confirm.html"
   })
 })
 </script>

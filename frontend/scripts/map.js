@@ -528,17 +528,42 @@ function initCrisisMode() {
   var btn = document.getElementById('crisis-btn')
   if (!btn) return
 
+  var modal = document.getElementById('crisis-modal')
+  var modalConfirm = document.getElementById('crisis-modal-confirm')
+  var modalCancel = document.getElementById('crisis-modal-cancel')
+  var crisisBar = document.getElementById('crisis-bar')
+  var navStatus = document.getElementById('crisis-nav-status')
+
+  function activateCrisis() {
+    isCrisisMode = true
+    document.body.classList.add('crisis-mode')
+    btn.textContent = '❎'
+    btn.title = 'Exit Crisis Mode'
+    if (crisisBar) crisisBar.style.display = 'flex'
+    if (navStatus) navStatus.style.display = 'inline'
+    if (modal) modal.style.display = 'none'
+  }
+
+  function deactivateCrisis() {
+    isCrisisMode = false
+    document.body.classList.remove('crisis-mode')
+    btn.textContent = '⚠️'
+    btn.title = 'Crisis Mode'
+    if (crisisBar) crisisBar.style.display = 'none'
+    if (navStatus) navStatus.style.display = 'none'
+  }
+
   btn.addEventListener('click', function() {
-    isCrisisMode = !isCrisisMode
-    if (isCrisisMode) {
-      document.body.classList.add('crisis-mode')
-      btn.textContent = '❎'
-      btn.title = 'Exit Crisis Mode'
+    if (!isCrisisMode) {
+      if (modal) modal.style.display = 'flex'
     } else {
-      document.body.classList.remove('crisis-mode')
-      btn.textContent = '⚠️'
-      btn.title = 'Crisis Mode'
+      deactivateCrisis()
     }
+  })
+
+  if (modalConfirm) modalConfirm.addEventListener('click', activateCrisis)
+  if (modalCancel) modalCancel.addEventListener('click', function() {
+    if (modal) modal.style.display = 'none'
   })
 }
 

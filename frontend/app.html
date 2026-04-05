@@ -16,7 +16,7 @@
       Concordia Emergency
     </a>
 
-    <div class="nav-search-wrap">
+    <div class="nav-search-wrap" id="map-search">
       <input type="text" id="ds-input" placeholder="Search buildings or address (e.g. EV, Hall)…" autocomplete="off">
       <div class="nav-search-btns">
         <button id="ds-btn"   type="button">Go</button>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="nav-right">
-      <span id="ds-status"></span>
+      <span id="ds-status"></span><span id="crisis-nav-status" style="display:none;color:#ff6b6b;font-size:13px;font-weight:700;margin-left:8px;">🚨 Crisis Mode Active</span>
       <button class="nav-icon-btn" id="crisis-btn" type="button" title="Crisis Mode">⚠️</button>
       <a class="nav-avatar" id="profile-initial" href="profile.html" title="Profile">?</a>
     </div>
@@ -63,7 +63,24 @@
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="data/building.js"></script>
-  <script src="scripts/api.js"></script>
+  <!-- Crisis Mode Modal -->
+<div id="crisis-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:20px;padding:36px 32px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+    <div style="font-size:48px;margin-bottom:16px;">🚨</div>
+    <div style="font-size:22px;font-weight:700;color:#1c1c1e;margin-bottom:10px;">Crisis Mode</div>
+    <div style="font-size:15px;color:#636366;line-height:1.6;margin-bottom:24px;">Crisis Mode enhances your safety awareness by darkening the map, highlighting active alerts, and alerting you when you are within 50m of a hazard. Use this when you feel unsafe on campus.</div>
+    <button id="crisis-modal-confirm" style="width:100%;padding:14px;background:#9d1523;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:10px;">Activate Crisis Mode</button>
+    <button id="crisis-modal-cancel" style="width:100%;padding:14px;background:none;color:#8e8e93;border:none;border-radius:12px;font-size:15px;cursor:pointer;font-family:inherit;">Cancel</button>
+  </div>
+</div>
+
+<!-- Crisis Warning Bar -->
+<div id="crisis-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#9d1523;color:#fff;padding:12px 24px;z-index:1000;display:none;align-items:center;justify-content:space-between;">
+  <span style="font-size:14px;font-weight:600;">🚨 Crisis Mode Active — Stay alert and follow safety instructions</span>
+  <button onclick="document.getElementById('crisis-btn').click()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Exit</button>
+</div>
+
+<script src="scripts/api.js"></script>
   <script src="scripts/auth.js"></script>
   <script src="scripts/map.js"></script>
 </body>
