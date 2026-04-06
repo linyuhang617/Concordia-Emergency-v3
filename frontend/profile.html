@@ -202,14 +202,7 @@
       <!-- Text Size & Account -->
       <div class="settings-card">
         <div class="settings-card-header">Display</div>
-        <div class="settings-row">
-          <div class="settings-label">Text Size</div>
-          <select id="text-size-select" style="border:none;outline:none;font-size:14px;color:#8e8e93;background:none;font-family:inherit;cursor:pointer;">
-            <option value="small">Small</option>
-            <option value="medium" selected>Medium</option>
-            <option value="large">Large</option>
-          </select>
-        </div>
+
         <div class="settings-card-header" style="margin-top:4px;">Account</div>
         <div class="settings-row" style="padding:0">
           <button class="logout-btn" id="logout-btn">Log Out</button>
@@ -306,16 +299,7 @@ document.addEventListener("DOMContentLoaded", async function() {
   quietStart.addEventListener("change", saveQuiet)
   quietEnd.addEventListener("change", saveQuiet)
 
-  // Text Size
-  var sizeSelect = document.getElementById("text-size-select")
-  var currentSize = currentPrefs.text_size || "medium"
-  sizeSelect.value = currentSize
-  sizeSelect.addEventListener("change", async function() {
-    currentSize = sizeSelect.value
-    localStorage.setItem("v3-text-size", currentSize)
-    applyTextSize(currentSize)
-    await savePrefs({ text_size: currentSize })
-  })
+
 
   // Account edit
   var editUsername = document.getElementById("edit-username")
