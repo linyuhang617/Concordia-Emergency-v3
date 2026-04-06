@@ -11,7 +11,7 @@ router = APIRouter(prefix="/api/users", tags=["users"])
 async def get_prefs(current_user: User = Depends(get_current_user), db: AsyncSession = Depends(get_db)):
     prefs = await user_service.get_prefs(current_user.id, db)
     if not prefs:
-        raise HTTPException(status_code=404, detail="Prefs not found")
+        prefs = await user_service.update_prefs(current_user.id, {}, db)
     return prefs
 
 @router.put("/me/prefs", response_model=PrefsResponse)
