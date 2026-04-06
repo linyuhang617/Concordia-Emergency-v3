@@ -424,8 +424,47 @@ body.app-body {
 .row-body { flex: 1; min-width: 0; }
 
 .row-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 13px; font-weight: 600;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.row-title-text {
+  min-width: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.status-pill.active {
+  background: #ff3b30;
+  color: #fff;
+}
+
+.status-pill.pending {
+  background: #d1d1d6;
+  color: #1c1c1e;
+}
+
+.status-pill.resolved {
+  background: #34c759;
+  color: #fff;
 }
 
 .row-subtitle {
@@ -437,15 +476,6 @@ body.app-body {
 .row-accessory {
   display: flex; align-items: center; gap: 5px; flex-shrink: 0;
 }
-
-.row-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-}
-
-.row-dot.red    { background: var(--red); }
-.row-dot.orange { background: var(--orange); }
-.row-dot.green  { background: var(--green); }
-.row-dot.gray   { background: var(--gray); }
 
 .row-chevron { color: var(--text-sec); }
 

@@ -27,9 +27,9 @@ const alertIconColors = {
   'Others':               'gray'
 }
 const statusMap = {
-  'ACTIVE':       { dot: 'red',    filter: 'active'   },
-  'PENDING':       { dot: 'gray',   filter: 'review'   },
-  'RESOLVED':     { dot: 'green',  filter: 'resolved' }
+  'ACTIVE':       { filter: 'active', badge: 'active' },
+  'PENDING':      { filter: 'review', badge: 'pending' },
+  'RESOLVED':     { filter: 'resolved', badge: 'resolved' }
 }
 const prefKey = {
   'Protest':              'notification_protest',
@@ -185,6 +185,18 @@ function renderAlertList(alerts, prefs) {
     return !(key && prefs[key] === 'false')
   })
 
+  var statusPriority = {
+    'ACTIVE': 0,
+    'PENDING': 1,
+    'UNDER REVIEW': 1,
+    'RESOLVED': 2
+  }
+  visible.sort(function(a, b) {
+    var pa = statusPriority[a.status] !== undefined ? statusPriority[a.status] : 1
+    var pb = statusPriority[b.status] !== undefined ? statusPriority[b.status] : 1
+    return pa - pb
+  })
+
   var active = 0, review = 0, resolved = 0
   visible.forEach(function(a) {
     if (a.status === 'ACTIVE') active++
@@ -209,7 +221,7 @@ function renderAlertList(alerts, prefs) {
     var color = alertColors[a.type] || '#8e8e93'
     var icon  = alertIcons[a.type]  || '⚠️'
     var iconClass = alertIconColors[a.type] || 'gray'
-    var st = statusMap[a.status] || { dot: 'gray', filter: 'active' }
+    var st = statusMap[a.status] || { filter: 'active', badge: 'pending' }
     var reportText = a.report_count === 1 ? '1 report' : a.report_count + ' reports'
     var timeText = a.created_at || ''
 
@@ -220,11 +232,10 @@ function renderAlertList(alerts, prefs) {
     row.innerHTML =
       '<div class="row-icon ' + iconClass + '">' + icon + '</div>' +
       '<div class="row-body">' +
-        '<div class="row-title">' + a.type + ' — ' + a.building_code + ' building</div>' +
+        '<div class="row-title"><span class="row-title-text">' + a.type + ' — ' + a.building_code + ' building</span><span class="status-pill ' + st.badge + '">' + a.status + '</span></div>' +
         '<div class="row-subtitle">' + (a.status === 'PENDING' ? 'Awaiting staff approval' : reportText + ' · ' + timeText) + '</div>' +
       '</div>' +
       '<div class="row-accessory">' +
-        '<div class="row-dot ' + st.dot + '"></div>' +
         '<svg class="row-chevron" width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l5.5 5.5L1 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
       '</div>'
     list.appendChild(row)
