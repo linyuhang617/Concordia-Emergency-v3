@@ -329,7 +329,7 @@ body.app-body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  height: 100%;
+  height: calc(100vh - var(--nav-h));
 }
 
 .sidebar-header {
