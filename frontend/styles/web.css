@@ -504,8 +504,6 @@ body.crisis-mode .row-title { color: #ffd0d0; }
 body.crisis-mode #map { filter: brightness(0.85); }
 
 /* ── Text Size ─────────────────────────────────────── */
-:root { --zoom: 1; }
-[data-text-size="small"]  { --zoom: 0.9; }
-[data-text-size="medium"] { --zoom: 1.0; }
-[data-text-size="large"]  { --zoom: 1.2; }
-.auth-page, .detail-page, .report-page { zoom: var(--zoom); }
+[data-text-size="small"]  body { font-size: 13px; }
+[data-text-size="medium"] body { font-size: 14px; }
+[data-text-size="large"]  body { font-size: 15px; }
