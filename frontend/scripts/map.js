@@ -602,6 +602,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   // Crisis mode
   initCrisisMode()
+  if (new URLSearchParams(window.location.search).get("crisis") === "1") { document.getElementById("crisis-modal-confirm") && document.getElementById("crisis-modal-confirm").click() }
 
   // Offline
   updateOfflineBanner()
