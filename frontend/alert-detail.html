@@ -237,7 +237,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     document.getElementById('detail-time').textContent = alert.created_at || '—'
     document.getElementById('detail-updated').textContent = alert.updated_at || alert.created_at || '—'
 
-    document.getElementById('review-btn').href = 'alert-review.html?id=' + alert.id
+    var reviewBtn = document.getElementById('review-btn')
+    if (alert.status === 'ACTIVE') { reviewBtn.href = 'alert-review.html?id=' + alert.id } else { reviewBtn.style.display = 'none' }
 
     var me = await window.API.getMe()
     if (me && me.role === 'staff') {
