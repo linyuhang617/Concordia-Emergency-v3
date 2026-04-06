@@ -300,6 +300,16 @@ body.app-body {
 
 .nav-icon-btn:hover { background: rgba(255,255,255,0.25); }
 
+.crisis-btn-label {
+  width: auto;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
 .nav-avatar {
   width: 30px; height: 30px;
   background: rgba(255,255,255,0.2);

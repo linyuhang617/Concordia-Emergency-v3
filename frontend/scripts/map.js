@@ -111,9 +111,9 @@ function initMap() {
       L.marker([b.lat, b.lng], {
         icon: L.divIcon({
           className: '',
-          html: '<div style="width:18px;height:18px;border-radius:50%;background:var(--crimson);border:1.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)">' + b.code + '</div>',
-          iconSize: [18, 18],
-          iconAnchor: [9, 9]
+          html: '<div style="width:26px;height:26px;border-radius:50%;background:var(--crimson);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.25)">' + b.code + '</div>',
+          iconSize: [26, 26],
+          iconAnchor: [13, 13]
         })
       }).addTo(map).bindPopup('<b>' + b.code + '</b><br><span style="font-size:13px;color:#666">' + b.buildingName + '</span>')
     })
@@ -147,10 +147,10 @@ async function renderAlertMarkers(map) {
         [parseFloat(alert.location_lat), parseFloat(alert.location_lng)],
         {
           icon: L.divIcon({
-            html: '<div style="width:30px;height:30px;border-radius:50%;background:' + color + ';border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 1px 6px ' + color + '55;' + markerOpacity + '">' + icon + '</div>',
+            html: '<div style="width:36px;height:36px;border-radius:50%;background:' + color + ';border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 2px 8px ' + color + '55;' + markerOpacity + '">' + icon + '</div>',
             className: '',
-            iconSize: [30, 30],
-            iconAnchor: [15, 15]
+            iconSize: [36, 36],
+            iconAnchor: [18, 18]
           })
         }
       ).addTo(map).bindPopup(
@@ -537,7 +537,7 @@ function initCrisisMode() {
   function activateCrisis() {
     isCrisisMode = true
     document.body.classList.add('crisis-mode')
-    btn.textContent = '❎'
+    btn.textContent = '❎ EXIT CRISIS MODE'
     btn.title = 'Exit Crisis Mode'
     if (crisisBar) crisisBar.style.display = 'flex'
     if (navStatus) navStatus.style.display = 'inline'
@@ -547,8 +547,8 @@ function initCrisisMode() {
   function deactivateCrisis() {
     isCrisisMode = false
     document.body.classList.remove('crisis-mode')
-    btn.textContent = '⚠️'
-    btn.title = 'Crisis Mode'
+    btn.textContent = '⚠️ ACTIVATE CRISIS MODE'
+    btn.title = 'Activate Crisis Mode'
     if (crisisBar) crisisBar.style.display = 'none'
     if (navStatus) navStatus.style.display = 'none'
   }

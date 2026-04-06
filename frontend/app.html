@@ -27,7 +27,7 @@
 
     <div class="nav-right">
       <span id="ds-status"></span><span id="crisis-nav-status" style="display:none;color:#ff6b6b;font-size:13px;font-weight:700;margin-left:8px;">🚨 Crisis Mode Active</span>
-      <button class="nav-icon-btn" id="crisis-btn" type="button" title="Crisis Mode">⚠️</button>
+      <button class="nav-icon-btn crisis-btn-label" id="crisis-btn" type="button" title="Activate Crisis Mode">⚠️ ACTIVATE CRISIS MODE</button>
       <a class="nav-avatar" id="profile-initial" href="profile.html" title="Profile">?</a>
     </div>
   </nav>
@@ -77,7 +77,7 @@
 <!-- Crisis Warning Bar -->
 <div id="crisis-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#9d1523;color:#fff;padding:12px 24px;z-index:1000;display:none;align-items:center;justify-content:space-between;">
   <span style="font-size:14px;font-weight:600;">🚨 Crisis Mode Active — Stay alert and follow safety instructions</span>
-  <button onclick="document.body.classList.remove('crisis-mode'); var b=document.getElementById('crisis-btn'); if(b){b.textContent='⚠️';b.title='Crisis Mode';} var bar=document.getElementById('crisis-bar'); if(bar)bar.style.display='none'; var ns=document.getElementById('crisis-nav-status'); if(ns)ns.style.display='none'; window.history.replaceState({},'',window.location.pathname);" style="background:rgba(255,255,255,0.2);border:none;color:#fff;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Exit</button>
+  <button onclick="document.body.classList.remove('crisis-mode'); var b=document.getElementById('crisis-btn'); if(b){b.textContent='⚠️ ACTIVATE CRISIS MODE';b.title='Activate Crisis Mode';} var bar=document.getElementById('crisis-bar'); if(bar)bar.style.display='none'; var ns=document.getElementById('crisis-nav-status'); if(ns)ns.style.display='none'; window.history.replaceState({},'',window.location.pathname);" style="background:rgba(255,255,255,0.2);border:none;color:#fff;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Exit</button>
 </div>
 
 <script src="scripts/api.js"></script>
