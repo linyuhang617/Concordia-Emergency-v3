@@ -602,7 +602,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   // Crisis mode
   initCrisisMode()
-  if (new URLSearchParams(window.location.search).get("crisis") === "1") { document.body.classList.add("crisis-mode"); var b = document.getElementById("crisis-btn"); if(b){ b.textContent="❎"; b.title="Exit Crisis Mode"; } var bar = document.getElementById("crisis-bar"); if(bar) bar.style.display="flex"; var ns = document.getElementById("crisis-nav-status"); if(ns) ns.style.display="inline"; }
+  if (new URLSearchParams(window.location.search).get("crisis") === "1") { var m = document.getElementById("crisis-modal"); if(m) m.style.display="flex"; }
 
   // Offline
   updateOfflineBanner()
