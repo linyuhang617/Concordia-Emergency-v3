@@ -111,7 +111,7 @@ function initMap() {
       L.marker([b.lat, b.lng], {
         icon: L.divIcon({
           className: '',
-          html: '<div style="width:28px;height:28px;border-radius:50%;background:var(--crimson);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)">' + b.code + '</div>',
+          html: '<div style="width:28px;height:28px;border-radius:50%;background:var(--crimson);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)">' + b.code + '</div>',
           iconSize: [28, 28],
           iconAnchor: [14, 14]
         })
