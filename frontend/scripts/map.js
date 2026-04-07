@@ -111,9 +111,9 @@ function initMap() {
       L.marker([b.lat, b.lng], {
         icon: L.divIcon({
           className: '',
-          html: '<div style="width:18px;height:18px;border-radius:50%;background:var(--crimson);border:1.5px solid #fff;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)">' + b.code + '</div>',
-          iconSize: [18, 18],
-          iconAnchor: [9, 9]
+          html: '<div style="width:28px;height:28px;border-radius:50%;background:var(--crimson);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)">' + b.code + '</div>',
+          iconSize: [28, 28],
+          iconAnchor: [14, 14]
         })
       }).addTo(map).bindPopup('<b>' + b.code + '</b><br><span style="font-size:13px;color:#666">' + b.buildingName + '</span>')
     })
