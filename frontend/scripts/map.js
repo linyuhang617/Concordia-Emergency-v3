@@ -27,9 +27,9 @@ const alertIconColors = {
   'Others':               'gray'
 }
 const statusMap = {
-  'ACTIVE':       { dot: 'red',    filter: 'active'   },
-  'PENDING':       { dot: 'gray',   filter: 'review'   },
-  'RESOLVED':     { dot: 'green',  filter: 'resolved' }
+  'ACTIVE':       { filter: 'active', badge: 'active' },
+  'PENDING':      { filter: 'review', badge: 'pending' },
+  'RESOLVED':     { filter: 'resolved', badge: 'resolved' }
 }
 const prefKey = {
   'Protest':              'notification_protest',
@@ -111,9 +111,9 @@ function initMap() {
       L.marker([b.lat, b.lng], {
         icon: L.divIcon({
           className: '',
-          html: '<div style="width:28px;height:28px;border-radius:50%;background:var(--crimson);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)">' + b.code + '</div>',
-          iconSize: [28, 28],
-          iconAnchor: [14, 14]
+          html: '<div style="width:26px;height:26px;border-radius:50%;background:var(--crimson);border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.25)">' + b.code + '</div>',
+          iconSize: [26, 26],
+          iconAnchor: [13, 13]
         })
       }).addTo(map).bindPopup('<b>' + b.code + '</b><br><span style="font-size:13px;color:#666">' + b.buildingName + '</span>')
     })
@@ -147,10 +147,10 @@ async function renderAlertMarkers(map) {
         [parseFloat(alert.location_lat), parseFloat(alert.location_lng)],
         {
           icon: L.divIcon({
-            html: '<div style="width:30px;height:30px;border-radius:50%;background:' + color + ';border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 1px 6px ' + color + '55;' + markerOpacity + '">' + icon + '</div>',
+            html: '<div style="width:36px;height:36px;border-radius:50%;background:' + color + ';border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:17px;box-shadow:0 2px 8px ' + color + '55;' + markerOpacity + '">' + icon + '</div>',
             className: '',
-            iconSize: [30, 30],
-            iconAnchor: [15, 15]
+            iconSize: [36, 36],
+            iconAnchor: [18, 18]
           })
         }
       ).addTo(map).bindPopup(
@@ -185,6 +185,18 @@ function renderAlertList(alerts, prefs) {
     return !(key && prefs[key] === 'false')
   })
 
+  var statusPriority = {
+    'ACTIVE': 0,
+    'PENDING': 1,
+    'UNDER REVIEW': 1,
+    'RESOLVED': 2
+  }
+  visible.sort(function(a, b) {
+    var pa = statusPriority[a.status] !== undefined ? statusPriority[a.status] : 1
+    var pb = statusPriority[b.status] !== undefined ? statusPriority[b.status] : 1
+    return pa - pb
+  })
+
   var active = 0, review = 0, resolved = 0
   visible.forEach(function(a) {
     if (a.status === 'ACTIVE') active++
@@ -209,7 +221,7 @@ function renderAlertList(alerts, prefs) {
     var color = alertColors[a.type] || '#8e8e93'
     var icon  = alertIcons[a.type]  || '⚠️'
     var iconClass = alertIconColors[a.type] || 'gray'
-    var st = statusMap[a.status] || { dot: 'gray', filter: 'active' }
+    var st = statusMap[a.status] || { filter: 'active', badge: 'pending' }
     var reportText = a.report_count === 1 ? '1 report' : a.report_count + ' reports'
     var timeText = a.created_at || ''
 
@@ -220,11 +232,10 @@ function renderAlertList(alerts, prefs) {
     row.innerHTML =
       '<div class="row-icon ' + iconClass + '">' + icon + '</div>' +
       '<div class="row-body">' +
-        '<div class="row-title">' + a.type + ' — ' + a.building_code + ' building</div>' +
+        '<div class="row-title"><span class="row-title-text">' + a.type + ' — ' + a.building_code + ' building</span><span class="status-pill ' + st.badge + '">' + a.status + '</span></div>' +
         '<div class="row-subtitle">' + (a.status === 'PENDING' ? 'Awaiting staff approval' : reportText + ' · ' + timeText) + '</div>' +
       '</div>' +
       '<div class="row-accessory">' +
-        '<div class="row-dot ' + st.dot + '"></div>' +
         '<svg class="row-chevron" width="8" height="13" viewBox="0 0 8 13" fill="none"><path d="M1 1l5.5 5.5L1 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
       '</div>'
     list.appendChild(row)
@@ -537,7 +548,7 @@ function initCrisisMode() {
   function activateCrisis() {
     isCrisisMode = true
     document.body.classList.add('crisis-mode')
-    btn.textContent = '❎'
+    btn.textContent = '❎ EXIT CRISIS MODE'
     btn.title = 'Exit Crisis Mode'
     if (crisisBar) crisisBar.style.display = 'flex'
     if (navStatus) navStatus.style.display = 'inline'
@@ -547,8 +558,8 @@ function initCrisisMode() {
   function deactivateCrisis() {
     isCrisisMode = false
     document.body.classList.remove('crisis-mode')
-    btn.textContent = '⚠️'
-    btn.title = 'Crisis Mode'
+    btn.textContent = '⚠️ ACTIVATE CRISIS MODE'
+    btn.title = 'Activate Crisis Mode'
     if (crisisBar) crisisBar.style.display = 'none'
     if (navStatus) navStatus.style.display = 'none'
   }
