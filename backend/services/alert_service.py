@@ -26,6 +26,7 @@ async def create_alert(db: AsyncSession, data: dict):
 
     if existing:
         existing.report_count += 1
+        existing.verification = f"Reported by {existing.report_count} student{"s" if existing.report_count > 1 else ""}"
         existing.updated_at = datetime.utcnow()
         await db.commit()
         await db.refresh(existing)
