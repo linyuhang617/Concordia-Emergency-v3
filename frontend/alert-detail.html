@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     var me = await window.API.getMe()
     if (me && me.role === 'staff') {
+      reviewBtn.textContent = 'Review'
       var approveBtn = document.getElementById('approve-btn')
       var resolveBtn = document.getElementById('resolve-btn')
       if (alert.status === 'PENDING') approveBtn.style.display = 'block'
