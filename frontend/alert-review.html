@@ -146,22 +146,13 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
     errorEl.style.display = "none"
 
-    var status
-    if (hazard.value === "no" || situation.value === "improved") {
-      status = "RESOLVED"
-    } else if (hazard.value === "yes" && situation.value === "worsened") {
-      status = "ACTIVE"
-    } else {
-      status = "UNDER REVIEW"
-    }
-
     var btn = document.getElementById("submit-btn")
     btn.disabled = true
 
     try {
       if (alertId) {
         await window.API.updateAlert(alertId, {
-          status: status,
+
           increment_count: true
         })
       }
