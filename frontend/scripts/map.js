@@ -160,7 +160,7 @@ async function renderAlertMarkers(map) {
           '<span style="font-size:12px;color:#999">🕐 ' + alert.created_at + ' · ' +
             (alert.report_count === 1 ? '1 report' : alert.report_count + ' reports') +
           '</span><br>' +
-          '<span style="color:' + color + ';font-size:12px">● ' + alert.status + '</span><br>' +
+          '<span style="color:' + (alert.status === 'RESOLVED' ? '#34c759' : alert.status === 'ACTIVE' ? '#ff3b30' : '#8e8e93') + ';font-size:12px">● ' + alert.status + '</span><br>' +
           '<a href="alert-detail.html?id=' + alert.id + '" style="font-size:13px;color:#007aff">View Details →</a>' +
         '</div>',
         { closeButton: false }
