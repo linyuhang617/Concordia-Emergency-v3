@@ -84,5 +84,6 @@ class CreateAlertRequest(BaseModel):
     verification: str = "Reported by 1 student"
 
 class UpdateAlertRequest(BaseModel):
+    increment_count: Optional[bool] = None
     status: Optional[str] = None
     verification: Optional[str] = None
