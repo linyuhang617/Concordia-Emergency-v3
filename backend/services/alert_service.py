@@ -58,8 +58,9 @@ async def update_alert(db: AsyncSession, alert_id: str, data: dict):
         return None
     if data.get("status"):
         alert.status = data["status"]
-    if data.get("verification"):
-        alert.verification = data["verification"]
+    if data.get("increment_count"):
+        alert.report_count += 1
+        alert.verification = f"Reported by {alert.report_count} student{"s" if alert.report_count > 1 else ""}"
     alert.updated_at = datetime.utcnow()
     await db.commit()
     await db.refresh(alert)

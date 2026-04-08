@@ -162,7 +162,8 @@ document.addEventListener("DOMContentLoaded", async function() {
       if (alertId) {
         await window.API.updateAlert(alertId, {
           status: status,
-          verification: "Verified by Campus Safety"
+          verification: "Verified by Campus Safety",
+          increment_count: true
         })
       }
       alert("Thank you! Your review has been submitted.")
