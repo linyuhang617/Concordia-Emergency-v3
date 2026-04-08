@@ -6,7 +6,6 @@ class SignupRequest(BaseModel):
     email: str
     password: str
     accessibility: List[str] = []
-    role: str = 'student'
 
 class LoginRequest(BaseModel):
     username: str

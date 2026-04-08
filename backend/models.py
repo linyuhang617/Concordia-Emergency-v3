@@ -46,7 +46,7 @@ class Alert(Base):
     location_lat  = Column(String, nullable=False)
     location_lng  = Column(String, nullable=False)
     description   = Column(String, nullable=False)
-    status        = Column(String, default="ACTIVE")
+    status        = Column(String, default="PENDING")
     verification  = Column(String, default="")
     report_count  = Column(Integer, default=1)
     reported_by   = Column(String, nullable=True)
